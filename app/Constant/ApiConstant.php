@@ -22,9 +22,19 @@ class ApiConstant
     const FAILED = 0;
 
     /**
-     * 未知错误
+     * 未知错误码
      */
     const UNKNOWN = -1;
+
+    /**
+     * 参数错误码
+     */
+    const PARAMS_ERROR = -2;
+
+    /**
+     * Auth认证错误码
+     */
+    const AUTH_ERROR = -3;
 
     /**
      * 成功描述

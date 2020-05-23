@@ -9,16 +9,21 @@ use Exception;
 
 class CheckJwtToken
 {
+    /**
+     * @param $request
+     * @param Closure $next
+     * @return \Illuminate\Http\JsonResponse|mixed
+     */
     public function handle($request, Closure $next)
     {
         try {
             # 检测Token是否有效
-            if (JWTAuth::parseToken()->check() === true) throw new Exception('token invalid');
-            # 设置用户信息
-        } catch (Exception $exception) {
-            return response()->json(['code' => ApiConstant::FAILED, 'msg' => $exception->getMessage()]);
-        }
+            if (JWTAuth::parseToken()->check() === false) throw new Exception('Token无效');
 
-        return $next($request);
+            # 通过
+            return $next($request);
+        } catch (Exception $exception) {
+            die(apiResponse(ApiConstant::AUTH_ERROR, $exception->getMessage()));
+        }
     }
 }

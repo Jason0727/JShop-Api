@@ -10,4 +10,18 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $oauthUser;
+
+    protected $user;
+
+    public function __construct()
+    {
+
+    }
+
+    private function getOauthUser()
+    {
+
+    }
 }

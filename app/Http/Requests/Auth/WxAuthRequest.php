@@ -15,7 +15,9 @@ class WxAuthRequest extends BaseRequest
     {
         return [
             'platform_id' => ['required'],
-            'code' => ['required']
+            'code' => ['required'],
+//            'encrypted_data' => ['required'],
+//            'iv' => ['required'],
         ];
     }
 
@@ -29,6 +31,8 @@ class WxAuthRequest extends BaseRequest
         return [
             'platform_id' => '平台',
             'code' => '授权码',
+            'encrypted_data' => '加密用户数据',
+            'iv' => '初始向量',
         ];
     }
 }

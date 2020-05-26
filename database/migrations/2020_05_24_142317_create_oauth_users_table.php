@@ -19,8 +19,8 @@ class CreateOauthUsersTable extends Migration
             $table->id();
             $table->integer('user_id')->default(0)->comment('外键,用户ID');
             $table->integer('platform_id')->default(0)->comment('外键,平台ID');
-            $table->string('open_id', 50)->default('')->comment('用户openid');
-            $table->string('union_id', 50)->default('')->comment('用户unionid,微信用户全局标识');
+            $table->string('open_id', 50)->comment('用户openid');
+            $table->string('union_id', 50)->comment('用户unionid,微信用户全局标识');
             $table->timestamps();
 
             # 索引
@@ -31,7 +31,7 @@ class CreateOauthUsersTable extends Migration
         });
 
         # 表注释
-        DB::statement('ALTER TABLE `oauth_users` comment = "用户Oauth信息"');
+        DB::statement('ALTER TABLE `oauth_users` comment = "用户Oauth信息表"');
     }
 
     /**

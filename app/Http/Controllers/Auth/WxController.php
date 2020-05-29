@@ -7,6 +7,7 @@ use App\Constant\ApiConstant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\WxAuthRequest;
 use App\Model\OauthUser;
+use Illuminate\Support\Facades\Redis;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class WxController extends Controller

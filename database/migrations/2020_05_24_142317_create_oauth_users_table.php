@@ -18,8 +18,8 @@ class CreateOauthUsersTable extends Migration
             # 字段
             $table->id();
             $table->integer('user_id')->default(0)->comment('外键,用户ID');
-            $table->integer('platform_id')->default(0)->comment('外键,平台ID');
             $table->string('open_id', 50)->comment('用户openid');
+            $table->integer('platform_id')->default(0)->comment('外键,平台ID');
             $table->string('union_id', 50)->comment('用户unionid,微信用户全局标识');
             $table->timestamps();
 

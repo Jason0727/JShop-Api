@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreatePlatformsTable extends Migration
 {
@@ -29,7 +30,8 @@ class CreatePlatformsTable extends Migration
             $table->text('root_cert')->nullable()->comment('公证书（支付宝专用）');
             $table->string('mch_id',50)->nullable()->comment('商户号（微信专用）');
             $table->string('pay_secret',50)->nullable()->comment('支付密钥（微信专用）');
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
             # 索引
             $table->index('oauth');
             $table->index('app_id');

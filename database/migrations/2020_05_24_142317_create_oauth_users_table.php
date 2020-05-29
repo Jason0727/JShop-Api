@@ -21,7 +21,8 @@ class CreateOauthUsersTable extends Migration
             $table->string('open_id', 50)->comment('用户openid');
             $table->integer('platform_id')->default(0)->comment('外键，平台ID');
             $table->string('union_id', 50)->comment('用户unionid，微信用户全局标识');
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
 
             # 索引
             $table->index('user_id');

@@ -13,5 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         # 地区Seeder
         $this->call(DistrictsSeeder::class);
+        # 头像库Seeder
+        $this->call(HeadLibrariesSeeder::class);
     }
 }

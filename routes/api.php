@@ -15,10 +15,21 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 |
 */
 
-Route::post('login', 'Auth\WxController@login');
+# 登录
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+    # 微信登录
+    Route::post('wx', 'WxController@login');
+    # 短信登录
+    Route::post('sms', 'SmsController@login');
+    # 密码登录
+    Route::post('password', 'PasswordController@login');
+    # 支付宝登录
+    Route::post('alipay', 'AlipayController@login');
+    # 发送短信验证码
+    Route::post('send/code', 'SmsController@sendCode');
+});
 
-Route::group(['middleware' => 'auth.jwt', 'prefix' => 'auth'], function () {
-    Route::post('user-info', function (Request $request) {
-        dd($request->platform);
-    });
+# 需登录API
+Route::group(['middleware' => 'auth.jwt'], function () {
+
 });

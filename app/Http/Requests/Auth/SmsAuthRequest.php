@@ -14,10 +14,6 @@ class SmsAuthRequest extends BaseRequest
     public function rules()
     {
         return [
-            'platform_id' => [
-                'required',
-//                'exists:'
-            ],
             'phone' => [
                 'required',
                 'mobile'

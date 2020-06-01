@@ -15,8 +15,15 @@ class SmsController extends Controller
 {
     public function login(SmsAuthRequest $smsAuthRequest)
     {
-        # 验证数据
-        $postData = $smsAuthRequest->validated();
+        try {
+            dd($smsAuthRequest->platform);
+            # 验证数据
+            $postData = $smsAuthRequest->validated();
+        } catch (Exception $exception) {
+            return apiResponse(ApiConstant::FAILED, ApiConstant::FAILED_MSG);
+        }
+
+
         # 验证码校验
 
     }

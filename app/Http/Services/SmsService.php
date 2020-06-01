@@ -54,4 +54,25 @@ class SmsService
             return false;
         }
     }
+
+    /**
+     * 短信验证码校验
+     *
+     * @param string $phone 手机号
+     * @param string $code 验证码
+     * @return bool
+     */
+    public static function checkCode(string $phone, string $code)
+    {
+        try {
+            Redis::select(RedisConstant::SELECT15);
+            $getCode = Redis::get(RedisConstant::SMS_CODE . ":" . $phone);
+            if (empty($getCode)) throw new Exception('验证码无效');
+            if ($code != $getCode) throw new Exception('验证码不正确');
+
+            return true;
+        } catch (Exception $exception) {
+            return false;
+        }
+    }
 }

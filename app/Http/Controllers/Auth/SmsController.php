@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\SmsAuthRequest;
 use App\Http\Requests\Auth\SmsCodeRequest;
 use App\Http\Services\SmsService;
+use App\Model\Platform;
 use Exception;
 
 class SmsController extends Controller
@@ -16,16 +17,12 @@ class SmsController extends Controller
     public function login(SmsAuthRequest $smsAuthRequest)
     {
         try {
-            dd($smsAuthRequest->platform);
+            $platform = app('platform');
             # 验证数据
             $postData = $smsAuthRequest->validated();
         } catch (Exception $exception) {
             return apiResponse(ApiConstant::FAILED, ApiConstant::FAILED_MSG);
         }
-
-
-        # 验证码校验
-
     }
 
     /**

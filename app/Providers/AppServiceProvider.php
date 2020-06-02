@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Redis;
+use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Strategies\OrderStrategy;
 use Illuminate\Support\Facades\Validator;
+use function PHPSTORM_META\type;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
                 ],
             ];
             return new EasySms($config);
+        });
+
+        # http容器注入
+        $this->app->singleton(Client::class, function ($app, array $config) {
+            return new Client($config);
         });
     }
 

@@ -4,6 +4,7 @@
 namespace App\Http\Services;
 
 use App\Constant\RedisConstant;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -13,6 +14,13 @@ use Overtrue\EasySms\Exceptions\NoGatewayAvailableException;
 
 class SmsService
 {
+    /**
+     * 手机号码白名单
+     */
+    const WHITE_PHONE = [
+        '13601587485'
+    ];
+
     /**
      * 发送短信验证码
      *
@@ -40,7 +48,16 @@ class SmsService
             if (strtoupper($response[$gateway]['result']['Code']) != 'OK') throw new Exception('短信反馈发送失败');
             # 记录redis
             Redis::select(RedisConstant::SELECT15);
-            Redis::set(RedisConstant::SMS_CODE . ":" . $phone, $code, env('SMS_CODE_EXPIRE'));
+            Redis::set(RedisConstant::SMS_CODE . ":" . $phone, $code);
+            Redis::expire(RedisConstant::SMS_CODE . ":" . $phone, env('SMS_CODE_EXPIRE'));
+            # 发送次数自增1
+            $expire = Carbon::now()->endOfDay()->timestamp - Carbon::now()->timestamp;
+            Redis::incr(RedisConstant::MAX_SMS_NUM . ":" . $phone);
+            Redis::expire(RedisConstant::MAX_SMS_NUM . ":" . $phone, $expire);
+            # ip次数自增1
+            $ip = get_real_ip();
+            Redis::incr(RedisConstant::MAX_IP_NUM . ":" . $ip);
+            Redis::expire(RedisConstant::MAX_IP_NUM . ":" . $ip, $expire);
             # 记录发送记录
             DB::commit();
             return true;
@@ -72,7 +89,35 @@ class SmsService
 
             return true;
         } catch (Exception $exception) {
-            return false;
+            return $exception->getMessage();
+        }
+    }
+
+    /**
+     * 校验当日短信发送次数及相同ip发送次数
+     *
+     * @param string $phone
+     * @return bool
+     */
+    public static function checkCountAndIp(string $phone)
+    {
+        try {
+            # 手机号码白名单校验
+            if (in_array($phone, self::WHITE_PHONE)) return true;
+            # 手机发送次数校验
+            Redis::select(RedisConstant::SELECT15);
+            $sendNum = Redis::get(RedisConstant::MAX_SMS_NUM . ":" . $phone);
+            $sendNum = $sendNum ?: 0;
+            if ($sendNum >= env('MAX_SMS_NUM')) throw new Exception('获取验证码已达当天上限');
+            # IP次数校验
+            $ip = get_real_ip();
+            $ipNum = Redis::get(RedisConstant::MAX_IP_NUM . ":" . $ip);
+            $ipNum = $ipNum ?: 0;
+            if ($ipNum >= env('MAX_IP_NUM')) throw new Exception('您访问太频繁，请稍后再试');
+
+            return true;
+        } catch (Exception $exception) {
+            return $exception->getMessage();
         }
     }
 }

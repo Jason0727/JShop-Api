@@ -18,7 +18,7 @@ class CheckPlatform
     {
         try {
             # 平台参数校验
-            $platformId = $request->input('platform_id', '');
+            $platformId = get_platform_id();
             if (empty($platformId)) throw new Exception('参数有误');
             # 平台校验
             $platform = Platform::query()->where('id', $platformId)->first();

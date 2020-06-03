@@ -75,3 +75,77 @@ if (!function_exists('rand_str')) {
         return random_number_generate($length, $type);
     }
 }
+
+if (!function_exists('get_header_info')) {
+    /**
+     * 获取header信息（兼容Apache和Nginx）
+     *
+     * @param string $option
+     * @return array|mixed|string
+     */
+    function get_header_info(string $option = "")
+    {
+        if (function_exists('apache_request_headers')) { # 存在 则为Apache服务器
+            $headers = apache_request_headers();
+        } else { # Nginx服务器
+            $headers = [];
+            foreach ($_SERVER as $name => $value) {
+                if (substr($name, 0, 5) == 'HTTP_') {
+                    $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+                }
+            }
+        }
+
+        if ($option) {
+            return isset($headers[$option]) ? $headers[$option] : "";
+        }
+
+        return $headers;
+    }
+}
+
+if (!function_exists('get_platform_id')) {
+    /**
+     * 获取平台ID
+     *
+     * @return array|mixed|string
+     */
+    function get_platform_id()
+    {
+        return get_header_info('Platform');
+    }
+}
+
+if (!function_exists('get_real_ip')) {
+    /**
+     * 获取真实IP
+     *
+     * @return mixed|string
+     */
+    function get_real_ip()
+    {
+        # 初始ip
+        $realIp = "127.0.0.1";
+        # 真实ip
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            # 排除内网ip
+            foreach ($ips as $ip) {
+                # 去除空格
+                $ip = trim($ip);
+                # 排除 A类地址: 10.0.0.0 -- 10.255.255.255 和 C类地址: 192.168.0.0 -- 192.168.255.255 地址
+                if (preg_match('/^10\./', $ip) || preg_match('/^192\.168/', $ip)) continue;
+                # 排除 B类地址 172.16.0.0 -- 172.31.255.255
+                $ipFields = explode('.', $ip);
+                if ($ipFields[0] == 172 && $ipFields[1] >= 16 && $ipFields[1] <= 31) continue;
+                # 设置真实ip
+                $realIp = $ip;
+                break;
+            }
+        } else {
+            $realIp = isset($_SERVER['HTTP_X_REAL_IP']) && !empty($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP'] : (isset($_SERVER["REMOTE_ADDR"]) && !empty($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : "127.0.0.1");
+        }
+
+        return $realIp;
+    }
+}

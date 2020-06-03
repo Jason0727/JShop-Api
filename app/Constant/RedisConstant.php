@@ -6,11 +6,14 @@ namespace App\Constant;
 
 class RedisConstant
 {
-    // 目前为本地Cache缓存,后期修改为Redis
-    # 平台ID
-    const PLATFORM_ID = "PLATFORM_ID";
     # 短信验证码
     const SMS_CODE = 'SMS_CODE';
+
+    # 当日相同手机号码最大短信发送次数
+    const MAX_SMS_NUM = 'MAX_SMS_NUM';
+
+    # 当日相同IP地址最大短信发送次数
+    const MAX_IP_NUM = 'MAX_IP_NUM';
 
     /**
      * Redis操作库

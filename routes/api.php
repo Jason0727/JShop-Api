@@ -15,7 +15,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 |
 */
 
-# 登录
+
+/*
+ * ========================
+ * 登录路由
+ * ========================
+ */
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     # 微信登录
     Route::post('wx', 'WxController@login');

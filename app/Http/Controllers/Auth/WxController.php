@@ -18,6 +18,12 @@ use wx\WxBizDataCrypt;
 
 class WxController extends Controller
 {
+    /**
+     * 微信登录
+     *
+     * @param WxAuthRequest $wxAuthRequest
+     * @return false|string
+     */
     public function login(WxAuthRequest $wxAuthRequest)
     {
         try {
@@ -28,46 +34,46 @@ class WxController extends Controller
             $wx = new Wx($platform);
             $baseInfo = $wx->getOpenId($postData['code']);
             if ($baseInfo === false) throw new Exception('登录失败，请稍后再试', ApiConstant::AUTH_ERROR);
-            # 用户信息解析
-            $wxBizDataCrypt = new WxBizDataCrypt($platform);
-            $wxBizDataCrypt->decryptData($baseInfo['session_key'], $postData['iv'], $postData['encrypted_data']);
-            if ($wxBizDataCrypt->getErrCode() != 0) throw new Exception('手机号授权失败', ApiConstant::AUTH_ERROR);
-            $authInfo = $wxBizDataCrypt->getData();
             # 平台用户信息
             $oauthUser = OauthUser::query()->where([
                 ['open_id', '=', $baseInfo['openid']],
                 ['platform_id', '=', $platform->id]
             ])->first();
             if (empty($oauthUser)) {
-                # 用户
-                $user = User::query()->firstOrCreate(['phone' => $authInfo['purePhoneNumber'], [
-                    'nickname' => RandomUserInfo::getNickname(),
-                    'avatar_url' => HeadLibrary::getRandomHead(),
-                    'phone' => $authInfo['purePhoneNumber']
-                ]]);
-
+                # 用户信息解析
+                $wxBizDataCrypt = new WxBizDataCrypt($platform);
+                $wxBizDataCrypt->decryptData($baseInfo['session_key'], $postData['iv'], $postData['encrypted_data']);
+                if ($wxBizDataCrypt->getErrCode() != 0) throw new Exception('手机号授权失败', ApiConstant::AUTH_ERROR);
+                $authInfo = $wxBizDataCrypt->getData();
+                # 查询或新增用户
+                $user = User::query()->firstOrCreate(
+                    ['phone' => $authInfo['purePhoneNumber']],
+                    [
+                        'nickname' => RandomUserInfo::getNickname(),
+                        'avatar_url' => HeadLibrary::getRandomHead(),
+                    ]
+                );
+                # 新增平台用户
                 $oauthUser = OauthUser::query()->create([
-
+                    'user_id' => $user->id,
+                    'open_id' => $baseInfo['openid'],
+                    'platform_id' => $platform->id,
+                    'union_id' => $baseInfo['unionid'] ?: ""
                 ]);
             }
+            # 载荷设置
+            $customClaims = [];
+            $token = JWTAuth::claims($customClaims)->fromUser($oauthUser);
+            # 返回数据
+            $data = [
+                'token' => $token,
+                'expire_in' => env('JWT_TTL')
+            ];
 
-            # 用户校验
-            $user = User::where('phone', $authInfo['purePhoneNumber'])->first();
-
+            # 返回
+            return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);
         } catch (Exception $exception) {
-            dd($exception->getMessage());
             return apiResponse($exception->getCode(), $exception->getMessage());
         }
-        die('112321');
-        
-
-        # 载荷设置
-        $customClaims = [
-            'platform_id' => $postData['platform_id']
-        ];
-        $token = JWTAuth::claims($customClaims)->fromUser($oauthUser);
-
-        # 返回
-        return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, ['token' => $token]);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Strategies\OrderStrategy;
 use Illuminate\Support\Facades\Validator;
-use function PHPSTORM_META\type;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -50,6 +50,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(Client::class, function ($app, array $config) {
             return new Client($config);
         });
+
+        # idle-helper注入
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(IdeHelperServiceProvider::class);
+        }
     }
 
     /**

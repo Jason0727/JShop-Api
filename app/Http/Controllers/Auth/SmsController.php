@@ -36,12 +36,16 @@ class SmsController extends Controller
         try {
             # 验证数据
             $postData = $smsCodeRequest->validated();
+            # 手机号发送次数和ip校验
+            $check = SmsService::checkCountAndIp($postData['phone']);
+            if ($check !== true) throw new Exception($check);
+            # 发送短信验证码
             $result = SmsService::sendCode($postData['phone']);
             if ($result === false) throw new Exception('验证码发送失败');
 
             return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG);
         } catch (Exception $exception) {
-            return apiResponse(ApiConstant::FAILED, ApiConstant::FAILED_MSG);
+            return apiResponse(ApiConstant::FAILED, $exception->getMessage());
         }
     }
 }

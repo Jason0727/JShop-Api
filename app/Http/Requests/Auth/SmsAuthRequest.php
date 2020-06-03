@@ -29,7 +29,6 @@ class SmsAuthRequest extends BaseRequest
     public function attributes()
     {
         return [
-            'platform_id' => '平台',
             'phone' => '手机号码',
         ];
     }

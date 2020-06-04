@@ -17,18 +17,18 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 /*
- * ========================
+ * --------------------------------------------------------------------------
  * 登录路由
- * ========================
+ * --------------------------------------------------------------------------
  */
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     # 微信登录
     Route::post('wx', 'WxController@login');
-    # 短信登录
+    # 短信登录(暂未使用)
     Route::post('sms', 'SmsController@login');
-    # 密码登录
+    # 密码登录(暂未使用)
     Route::post('password', 'PasswordController@login');
-    # 支付宝登录
+    # 支付宝登录(暂未使用)
     Route::post('alipay', 'AlipayController@login');
     # 发送短信验证码
     Route::post('send/code', 'SmsController@sendCode');

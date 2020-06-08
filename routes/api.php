@@ -36,5 +36,9 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
 # 需登录API
 Route::group(['middleware' => 'auth.jwt'], function () {
-
+    # oss文件上传
+    Route::group(['prefix' => 'oss', 'namespace' => 'Oss'], function () {
+        # 通用文件上传
+        Route::post('common', 'CommonController@putFile');
+    });
 });

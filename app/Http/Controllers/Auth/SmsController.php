@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\SmsAuthRequest;
 use App\Http\Requests\Auth\SmsCodeRequest;
 use App\Http\Services\SmsService;
-use App\Model\Platform;
 use Exception;
 
 class SmsController extends Controller

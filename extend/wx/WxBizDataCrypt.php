@@ -9,7 +9,7 @@
 namespace wx;
 
 
-use App\Model\Platform;
+use App\Models\Platform;
 use Illuminate\Support\Facades\Log;
 use traits\ReturnTrait;
 use Exception;

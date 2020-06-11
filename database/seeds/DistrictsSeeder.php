@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\District;
+use App\Models\District;
 use GuzzleHttp\Client;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Cache;

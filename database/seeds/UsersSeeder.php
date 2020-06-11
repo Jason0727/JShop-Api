@@ -1,10 +1,10 @@
 <?php
 
-use App\Model\HeadLibrary;
+use App\Models\HeadLibrary;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use user\RandomUserInfo;
-use App\Model\User;
+use App\Models\User;
 
 class UsersSeeder extends Seeder
 {

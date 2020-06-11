@@ -9,7 +9,7 @@
 namespace wx;
 
 
-use App\Model\Platform;
+use App\Models\Platform;
 use GuzzleHttp\Client;
 use Exception;
 use Illuminate\Support\Facades\Log;

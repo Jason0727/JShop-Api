@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Constant\ApiConstant;
-use App\Model\Platform;
+use App\Models\Platform;
 use Closure;
 use Exception;
 

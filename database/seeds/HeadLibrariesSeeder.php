@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Model\HeadLibrary;
+use App\Models\HeadLibrary;
 use Carbon\Carbon;
 
 class HeadLibrariesSeeder extends Seeder

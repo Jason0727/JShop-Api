@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use App\Model\Platform;
+use App\Models\Platform;
 
 class PlatformsSeeder extends Seeder
 {

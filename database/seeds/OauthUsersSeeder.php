@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use App\Model\OauthUser;
+use App\Models\OauthUser;
 
 class OauthUsersSeeder extends Seeder
 {

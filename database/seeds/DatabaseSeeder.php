@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OauthUsersSeeder::class);
         # 小程序标题
         $this->call(PathTitlesSeeder::class);
+        # 数据字典
+        $this->call(OptionsSeeder::class);
     }
 }

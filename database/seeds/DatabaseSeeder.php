@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         # 平台用户Seeder
         $this->call(OauthUsersSeeder::class);
+        # 小程序标题
+        $this->call(PathTitlesSeeder::class);
     }
 }

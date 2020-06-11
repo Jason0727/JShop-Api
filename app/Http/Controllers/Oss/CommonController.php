@@ -28,7 +28,7 @@ class CommonController extends Controller
         try {
             # 文件校验
             $file = $request->file('common');
-            if (!$file->isValid()) throw new Exception('文件无效');
+            if (empty($file) || !$file->isValid()) throw new Exception('文件无效');
             # 保存目录
             $dir = $request->post('dir', 'images');
             # 上传

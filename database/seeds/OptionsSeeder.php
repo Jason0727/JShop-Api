@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Option;
+
 class OptionsSeeder extends Seeder
 {
     /**
@@ -705,6 +706,111 @@ class OptionsSeeder extends Seeder
                     ],
                     'cell_5' => [
                         'url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-09/fd4bdf1b4b0cabb0cfb562dc02931cdd.png'
+                    ],
+                ]
+            ], JSON_UNESCAPED_UNICODE)
+        ];
+        $this->data[] = [
+            'title' => '首页模块',
+            'key' => 'HOME_PAGE_MODULE',
+            'value' => json_encode([
+                ['name' => 'search'],
+                ['name' => 'banner'],
+                ['name' => 'notice'],
+                ['name' => 'coupon'],
+                ['name' => 'nav'],
+                ['name' => 'miaosha'],
+                ['name' => 'pintuan'],
+                ['name' => 'yuyue'],
+                ['name' => 'block-1'],
+                ['name' => 'single_cat-1'],
+            ], JSON_UNESCAPED_UNICODE)
+        ];
+        $this->data[] = [
+            'title' => '分销商配置',
+            'key' => 'SHARE_CUSTOM_DATA',
+            'value' => json_encode([
+                'menus' => [
+                    'money' => [
+                        'name' => '分销佣金',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-12/df76230475dc2bf25df5e4b35f35f6a7.png',
+                        'open_type' => 'navigator',
+                        'url' => '/pages/share-money/share-money',
+                        'tel' => '',
+                    ],
+                    'order' => [
+                        'name' => '分销订单',
+                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-order.png',
+                        'open_type' => 'navigator',
+                        'url' => '/pages/share-order/share-order',
+                        'tel' => '',
+                    ],
+                    'cash' => [
+                        'name' => '提现明细',
+                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-cash.png',
+                        'open_type' => 'navigator',
+                        'url' => '/pages/cash-detail/cash-detail',
+                        'tel' => '',
+                    ],
+                    'team' => [
+                        'name' => '我的团队',
+                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-team.png',
+                        'open_type' => 'navigator',
+                        'url' => '/pages/share-team/share-team',
+                        'tel' => '',
+                    ],
+                    'qrcode' => [
+                        'name' => '推广二维码',
+                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-qrcode.png',
+                        'open_type' => 'navigator',
+                        'url' => '/pages/share-qrcode/share-qrcode',
+                        'tel' => '',
+                    ],
+                ],
+                'words' => [
+                    'can_be_presented' => [
+                        'name' => '可提现佣金',
+                        'default' => '可提现佣金',
+                    ],
+                    'already_presented' => [
+                        'name' => '已提现佣金',
+                        'default' => '已提现佣金',
+                    ],
+                    'parent_name' => [
+                        'name' => '推荐人',
+                        'default' => '推荐人',
+                    ],
+                    'pending_money' => [
+                        'name' => '待打款佣金',
+                        'default' => '待打款佣金',
+                    ],
+                    'cash' => [
+                        'name' => '提现',
+                        'default' => '提现',
+                    ],
+                    'user_instructions' => [
+                        'name' => '用户须知',
+                        'default' => '用户须知',
+                    ],
+                    'apply_cash' => [
+                        'name' => '我要提现',
+                        'default' => '我要提现',
+                    ],
+                    'cash_type' => [
+                        'name' => '提现方式',
+                        'default' => '提现方式',
+                    ],
+                    'cash_money' => [
+                        'name' => '提现金额',
+                        'default' => '提现金额',
+                    ],
+                    'order_money_un' => [
+                        'name' => '未结算佣金',
+                        'default' => '未结算佣金',
+                    ],
+                    'share_name' => [
+                        'name' => '分销商',
+                        'default' => '分销商',
                     ],
                 ]
             ], JSON_UNESCAPED_UNICODE)

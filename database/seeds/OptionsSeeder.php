@@ -30,6 +30,32 @@ class OptionsSeeder extends Seeder
     private function formatData()
     {
         $this->data[] = [
+            'title' => '商城配置',
+            'key' => 'STORE_CONFIG',
+            'value' => json_encode([
+                'name' => '胖海豚', # 商城名称
+                'copyright' => '', # 版权描述
+                'copyright_pic_url' => '', # 版权图标url
+                'copyright_url' => '', # 版权超链接
+                'contact_tel' => '', # 联系电话
+                'show_customer_service' => 1, # 是否显示在线客服 0 否 1 是
+                'customer_service_url' => "https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/3ad1386a0c0f25f5badbc629baeed40e.jpg", # 客服图标url
+                'cat_style' => 1, # 分类页面样式
+                'address' => "上海上海市浦东新区博兴路1768弄28号", # 商城地址
+                'is_offline' => 1, # 是否开启自提 0 否 1 是
+                'is_coupon' => 1, # 是否开启优惠券 0 否 1 是
+                'is_comment' => 1, # 是否开启评论功能 0 否 1 是
+                'is_share_price' => 1, # 分销价是否展示 0 否 1 是
+                'is_member_price' => 1, # 会员价是否展示 0 否 1 是
+                'dial' => 1, # 一键拨号开关是否开启 0 否 1 是
+                'dial_pic' => "https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/f07fe0d1e646212aac69041c2d276ff1.jpg", # 拨号图标url
+                'cut_thread' => 1, # 是否开启分类分割线 0 否 1 是
+                'purchase_frame' => 1, # 是否开启购买人滚动 0 否 1 是
+                'is_sales' => 1, # 是否显示商品销量 0 否 1 是
+                'quick_navigation' => 1, # 0
+            ], JSON_UNESCAPED_UNICODE)
+        ];
+        $this->data[] = [
             'title' => '服务器默认图片',
             'key' => 'SERVICE_DEFAULT_IMG',
             'value' => json_encode([
@@ -740,28 +766,28 @@ class OptionsSeeder extends Seeder
                     ],
                     'order' => [
                         'name' => '分销订单',
-                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-order.png',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/0f57bcfe99b1d949801b274437ebb302.png',
                         'open_type' => 'navigator',
                         'url' => '/pages/share-order/share-order',
                         'tel' => '',
                     ],
                     'cash' => [
                         'name' => '提现明细',
-                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-cash.png',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/a250e5b5fc365e93613b2bdf9e4ce8e7.png',
                         'open_type' => 'navigator',
                         'url' => '/pages/cash-detail/cash-detail',
                         'tel' => '',
                     ],
                     'team' => [
                         'name' => '我的团队',
-                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-team.png',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/9808f69cc0323b622612a291be0e515a.png',
                         'open_type' => 'navigator',
                         'url' => '/pages/share-team/share-team',
                         'tel' => '',
                     ],
                     'qrcode' => [
                         'name' => '推广二维码',
-                        'icon' => \Yii::$app->request->hostInfo . \Yii::$app->request->baseUrl . '/statics/images/share-custom/img-share-qrcode.png',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/2180834d247b678cdb07bc3493aea60d.png',
                         'open_type' => 'navigator',
                         'url' => '/pages/share-qrcode/share-qrcode',
                         'tel' => '',
@@ -815,5 +841,6 @@ class OptionsSeeder extends Seeder
                 ]
             ], JSON_UNESCAPED_UNICODE)
         ];
+
     }
 }

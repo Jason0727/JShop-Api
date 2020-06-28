@@ -39,6 +39,14 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     # oss文件上传
     Route::group(['prefix' => 'oss', 'namespace' => 'Oss'], function () {
         # 通用文件上传
-        Route::post('common', 'CommonController@putFile');
+        Route::post('upload', 'UploadController');
     });
 });
+
+/**
+ * 商城路由
+ */
+//Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
+//    # 商城配置
+//    Route::post('config', 'ConfigController');
+//});

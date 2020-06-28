@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Constant\ApiConstant;
 use Closure;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
 
@@ -22,6 +23,8 @@ class CheckJwtToken
 
             # 通过
             return $next($request);
+        } catch (JWTException $JWTException) {
+            die(apiResponse(ApiConstant::AUTH_ERROR, "token无效"));
         } catch (Exception $exception) {
             die(apiResponse(ApiConstant::AUTH_ERROR, $exception->getMessage()));
         }

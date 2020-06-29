@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 /**
  * 商城路由
  */
-//Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
-//    # 商城配置
-//    Route::post('config', 'ConfigController');
-//});
+Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
+    # 商城配置
+    Route::get('config', 'ConfigController');
+});

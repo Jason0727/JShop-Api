@@ -18,7 +18,7 @@ class CreatePageTitlesTable extends Migration
             # 字段
             $table->id();
             $table->string('title', 30)->comment('标题');
-            $table->string('page_url', 50)->comment('小程序路径');
+            $table->string('url', 50)->comment('小程序路径');
         });
         # 表注释
         DB::statement('ALTER TABLE `page_titles` comment = "小程序页面标题"');

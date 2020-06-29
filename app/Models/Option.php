@@ -16,7 +16,7 @@ class Option extends Model
     {
         if (empty($key)) return false;
 
-        $data = Option::query()->where('key', $key)->first();
+        $data = self::query()->where('key', $key)->first();
 
         return $data ?? false;
     }
@@ -28,7 +28,7 @@ class Option extends Model
      */
     public static function getAll()
     {
-        $data = Option::query()->get();
+        $data = self::query()->get();
 
         return $data;
     }
@@ -41,7 +41,7 @@ class Option extends Model
      */
     public static function getTitleWithKey()
     {
-        $data = Option::query()->pluck('title', 'key');
+        $data = self::query()->pluck('title', 'key');
 
         return $data;
     }
@@ -53,8 +53,19 @@ class Option extends Model
      */
     public static function getTitleWithId()
     {
-        $data = Option::query()->pluck('title', 'id');
+        $data = self::query()->pluck('title', 'id');
 
         return $data;
+    }
+
+
+    /**
+     * json字符串转数组
+     *
+     * @return mixed
+     */
+    public function decode()
+    {
+        return json_decode($this->value, true);
     }
 }

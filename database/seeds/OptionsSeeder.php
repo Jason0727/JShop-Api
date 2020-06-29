@@ -34,10 +34,11 @@ class OptionsSeeder extends Seeder
             'key' => 'STORE_CONFIG',
             'value' => json_encode([
                 'name' => '胖海豚', # 商城名称
+                'logo' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-29/a9d0e3956d3830319a84627b4bfde01c.jpg', # 商城Logo Url
                 'copyright' => '', # 版权描述
                 'copyright_pic_url' => '', # 版权图标url
                 'copyright_url' => '', # 版权超链接
-                'contact_tel' => '', # 联系电话
+                'contact_tel' => '13601587485', # 联系电话
                 'show_customer_service' => 1, # 是否显示在线客服 0 否 1 是
                 'customer_service_url' => "https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/3ad1386a0c0f25f5badbc629baeed40e.jpg", # 客服图标url
                 'cat_style' => 1, # 分类页面样式
@@ -52,7 +53,9 @@ class OptionsSeeder extends Seeder
                 'cut_thread' => 1, # 是否开启分类分割线 0 否 1 是
                 'purchase_frame' => 1, # 是否开启购买人滚动 0 否 1 是
                 'is_sales' => 1, # 是否显示商品销量 0 否 1 是
-                'quick_navigation' => 1, # 0
+                'quick_navigation_type' => 0, # 快捷导航 0 关闭 1 点击收起 2 全部展示
+                'home_img' => "https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-29/567e6cd3050a7727b4f249b11fd0bd95.jpg", # 导航-返回首页图标url
+                'buy_member' => 1, # 是否支持购买会员 0 不支持 1 支持
             ], JSON_UNESCAPED_UNICODE)
         ];
         $this->data[] = [

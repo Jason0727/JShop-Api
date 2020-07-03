@@ -844,6 +844,64 @@ class OptionsSeeder extends Seeder
                 ]
             ], JSON_UNESCAPED_UNICODE)
         ];
-
+        $this->data[] = [
+            'title' => '顶部导航栏配置',
+            'key' => 'TOP_NAV_BAR',
+            'value' => json_encode([
+                'fontColor' => '#ffffff', # 字体颜色
+                'backgroundColor' => '#81f016', # 背景颜色
+                'bottomBackgroundColor' => '#6ef806' # 按钮背景颜色
+            ], JSON_UNESCAPED_UNICODE)
+        ];
+        $this->data[] = [
+            'title' => '底部导航栏配置',
+            'key' => 'BOTTOM_NAV_BAR',
+            'value' => json_encode([
+                'background_image' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==',
+                'border_color' => 'rgba(0,0,0,.1)',
+                'navs' => [
+                    [
+                        'url' => '/pages/index/index',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/1751449a7bfd94fc608e6d42bb606b2e.png',
+                        'active_icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/f3431ec831e75cda3acbab28408bebb2.png',
+                        'text' => '首页',
+                        'color' => '#888',
+                        'active_color' => '#ff4544',
+                        'open_type' => '',
+                        'new_url' => '/pages/index/index',
+                    ],
+                    [
+                        'url' => '/pages/cat/cat',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/2499f286e07137200a48007e0d1a220a.png',
+                        'active_icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/328c6dec669434f1697cb4758cfa26d5.png',
+                        'text' => '分类',
+                        'color' => '#888',
+                        'active_color' => '#ff4544',
+                        'open_type' => '',
+                        'new_url' => '/pages/cat/cat',
+                    ],
+                    [
+                        'url' => '/pages/cart/cart',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/34686c42ce7228b2aa8eda14816ec706.png',
+                        'active_icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/e41377a2d6dd928d66a5feee1216afea.png',
+                        'text' => '购物车',
+                        'color' => '#888',
+                        'active_color' => '#ff4544',
+                        'open_type' => '',
+                        'new_url' => '/pages/cart/cart',
+                    ],
+                    [
+                        'url' => '/pages/user/user',
+                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/0da8aa9df3441d82fff44af29aa43b76.png',
+                        'active_icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-03/9c41b2b861d59e1f2c08c125c84979b1.png',
+                        'text' => '我',
+                        'color' => '#888',
+                        'active_color' => '#ff4544',
+                        'open_type' => '',
+                        'new_url' => '/pages/user/user',
+                    ]
+                ]
+            ], JSON_UNESCAPED_UNICODE)
+        ];
     }
 }

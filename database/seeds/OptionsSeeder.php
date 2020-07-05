@@ -848,7 +848,7 @@ class OptionsSeeder extends Seeder
             'title' => '顶部导航栏配置',
             'key' => 'TOP_NAV_BAR',
             'value' => json_encode([
-                'fontColor' => '#ffffff', # 字体颜色
+                'frontColor' => '#ffffff', # 字体颜色
                 'backgroundColor' => '#81f016', # 背景颜色
                 'bottomBackgroundColor' => '#6ef806' # 按钮背景颜色
             ], JSON_UNESCAPED_UNICODE)

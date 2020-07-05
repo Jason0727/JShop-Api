@@ -42,4 +42,28 @@ class StoreService
 
         return $data === false ? [] : $data->decode();
     }
+
+    /**
+     * 获取底部导航配置
+     *
+     * @return array
+     */
+    public static function getBottomNavBar()
+    {
+        $data = Option::getOne(OptionConstant::BOTTOM_NAV_BAR);
+
+        return $data === false ? [] : $data->decode();
+    }
+
+    /**
+     * 获取顶部导航配置
+     *
+     * @return array
+     */
+    public static function getTopNavBar()
+    {
+        $data = Option::getOne(OptionConstant::TOP_NAV_BAR);
+
+        return $data === false ? [] : $data->decode();
+    }
 }

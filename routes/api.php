@@ -49,4 +49,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
     # 商城配置
     Route::get('config', 'ConfigController');
+    # 底部导航栏配置
+    Route::get('bottom-nav-bar', 'BottomNavBarController');
+    # 顶部导航栏配置
+    Route::get('top-nav-bar', 'TopNavBarController');
 });

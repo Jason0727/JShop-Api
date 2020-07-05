@@ -15,4 +15,8 @@ class OptionConstant
     const SERVICE_DEFAULT_IMG = 'SERVICE_DEFAULT_IMG';
     # 商城配置
     const STORE_CONFIG = 'STORE_CONFIG';
+    # 底部导航配置
+    const BOTTOM_NAV_BAR = 'BOTTOM_NAV_BAR';
+    # 顶部导航配置
+    const TOP_NAV_BAR = 'TOP_NAV_BAR';
 }

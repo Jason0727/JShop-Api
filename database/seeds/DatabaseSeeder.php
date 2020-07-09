@@ -27,5 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call(OptionsSeeder::class);
         # 商城Seeder
         $this->call(StoreSeeder::class);
+        # Diy模板Seeder
+        $this->call(DiyTemplatesSeeder::class);
+        # 导航轮播（广告位）Seeder
+        $this->call(BannersSeeder::class);
     }
 }

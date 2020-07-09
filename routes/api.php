@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +14,10 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 */
 
 
-/*
- * --------------------------------------------------------------------------
- * 登录路由
- * --------------------------------------------------------------------------
+/**
+ * ========================================================================
+ * 登录 路由列表
+ * ========================================================================
  */
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     # 微信登录
@@ -34,23 +32,37 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::post('send/code', 'SmsController@sendCode');
 });
 
-# 需登录API
-Route::group(['middleware' => 'auth.jwt'], function () {
+/**
+ * ========================================================================
+ * OSS 路由列表
+ * ========================================================================
+ */
+//Route::group(['middleware' => 'auth.jwt'], function () {
     # oss文件上传
     Route::group(['prefix' => 'oss', 'namespace' => 'Oss'], function () {
         # 通用文件上传
         Route::post('upload', 'UploadController');
     });
-});
+//});
 
 /**
- * 商城路由
+ * ========================================================================
+ * 商城 路由列表
+ * ========================================================================
  */
 Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
-    # 商城配置
-    Route::get('config', 'ConfigController');
-    # 底部导航栏配置
-    Route::get('bottom-nav-bar', 'BottomNavBarController');
-    # 顶部导航栏配置
-    Route::get('top-nav-bar', 'TopNavBarController');
+    # 基本信息
+    Route::group(['prefix' => 'base', 'namespace' => 'Base'], function () {
+        # 商城配置
+        Route::get('config', 'ConfigController');
+        # 底部导航栏配置
+        Route::get('bottom-nav-bar', 'BottomNavBarController');
+        # 顶部导航栏配置
+        Route::get('top-nav-bar', 'TopNavBarController');
+    });
+    # 首页
+    Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
+        # 首页
+        Route::get('index', 'IndexController');
+    });
 });

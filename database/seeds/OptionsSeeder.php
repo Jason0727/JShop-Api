@@ -42,6 +42,7 @@ class OptionsSeeder extends Seeder
                 'show_customer_service' => 1, # 是否显示在线客服 0 否 1 是
                 'customer_service_url' => "https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/3ad1386a0c0f25f5badbc629baeed40e.jpg", # 客服图标url
                 'cat_style' => 1, # 分类页面样式
+                'cat_goods_count' => 2, # 首页分类展示数量
                 'address' => "上海上海市浦东新区博兴路1768弄28号", # 商城地址
                 'is_offline' => 1, # 是否开启自提 0 否 1 是
                 'is_coupon' => 1, # 是否开启优惠券 0 否 1 是
@@ -746,13 +747,16 @@ class OptionsSeeder extends Seeder
                 ['name' => 'search'],
                 ['name' => 'banner'],
                 ['name' => 'notice'],
-                ['name' => 'coupon'],
                 ['name' => 'nav'],
+                ['name' => 'topic'],
+                ['name' => 'coupon'],
                 ['name' => 'miaosha'],
-                ['name' => 'pintuan'],
-                ['name' => 'yuyue'],
                 ['name' => 'block-1'],
+                ['name' => 'pintuan'],
+                ['name' => 'video-2'],
+                ['name' => 'yuyue'],
                 ['name' => 'single_cat-1'],
+                ['name' => 'all_cat'],
             ], JSON_UNESCAPED_UNICODE)
         ];
         $this->data[] = [

@@ -36,6 +36,7 @@ class BannersSeeder extends Seeder
             'platform_id' => 1,
             'sort' => 0,
             'type' => 0,
+            'scene' => 'HOME_INDEX',
             'open_type' => 0,
             'link_url' => null,
             'appid' => null
@@ -47,6 +48,7 @@ class BannersSeeder extends Seeder
             'platform_id' => 1,
             'sort' => 1,
             'type' => 0,
+            'scene' => 'HOME_INDEX',
             'open_type' => 1,
             'link_url' => '/pages/cat/cat',
             'appid' => null
@@ -58,6 +60,7 @@ class BannersSeeder extends Seeder
             'platform_id' => 1,
             'sort' => 2,
             'type' => 0,
+            'scene' => 'HOME_INDEX',
             'open_type' => 2,
             'link_url' => '/pages/index/index',
             'appid' => '1234567890'

@@ -19,4 +19,6 @@ class OptionConstant
     const BOTTOM_NAV_BAR = 'BOTTOM_NAV_BAR';
     # 顶部导航配置
     const TOP_NAV_BAR = 'TOP_NAV_BAR';
+    # 首页模块
+    const HOME_PAGE_MODULE = 'HOME_PAGE_MODULE';
 }

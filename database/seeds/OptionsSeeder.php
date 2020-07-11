@@ -57,6 +57,7 @@ class OptionsSeeder extends Seeder
                 'quick_navigation_type' => 0, # 快捷导航 0 关闭 1 点击收起 2 全部展示
                 'home_img' => "https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-29/567e6cd3050a7727b4f249b11fd0bd95.jpg", # 导航-返回首页图标url
                 'buy_member' => 1, # 是否支持购买会员 0 不支持 1 支持
+                'home_nav_count' => 0, # 首页导航每行显示的个数 0 4个 1 5个
             ], JSON_UNESCAPED_UNICODE)
         ];
         $this->data[] = [

@@ -25,11 +25,11 @@ class DatabaseSeeder extends Seeder
         $this->call(PageTitlesSeeder::class);
         # 数据字典Seeder
         $this->call(OptionsSeeder::class);
-        # 商城Seeder
-        $this->call(StoreSeeder::class);
         # Diy模板Seeder
         $this->call(DiyTemplatesSeeder::class);
         # 导航轮播（广告位）Seeder
         $this->call(BannersSeeder::class);
+        # 首页导航
+        $this->call(HomeNavsSeeder::class);
     }
 }

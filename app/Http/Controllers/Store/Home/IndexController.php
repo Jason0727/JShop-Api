@@ -6,6 +6,7 @@ use App\Constant\ApiConstant;
 use App\Http\Controllers\Controller;
 use App\Http\Services\BannerService;
 use App\Http\Services\HomeService;
+use App\Http\Services\StoreService;
 use App\Models\Banner;
 
 class IndexController extends Controller
@@ -19,12 +20,19 @@ class IndexController extends Controller
     {
         # 模块(分类未处理)
         $moduleList = HomeService::getModuleList();
-        # 首页导航
-        $bannerList = BannerService::getBannerList(Banner::SCENE_HOME_INDEX);
+        # 轮播图
+        $bannerList = HomeService::getBannerList(Banner::SCENE_HOME_INDEX);
+        # 导航
+        $homeNavList = HomeService::getHomeNavList();
+        # 商城配置
+        $store = StoreService::getStoreConfig();
 
+        # 返回
         $data = [
             'module_list' => $moduleList,
             'banner_list' => $bannerList,
+            'home_nav_list' => $homeNavList,
+            'store' => $store
         ];
 
         return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);

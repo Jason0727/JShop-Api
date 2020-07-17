@@ -38,8 +38,8 @@ class AppServiceProvider extends ServiceProvider
                     ],
                     # 阿里云
                     'aliyun' => [
-                        'access_key_id' => 'LTAIgJRYXy4wOgin',
-                        'access_key_secret' => 'TNua9ItLYfhyt0OFX6RR1oTPMKQ2gX',
+                        'access_key_id' => env('OSS_ACCESS_KEY'),
+                        'access_key_secret' => env('OSS_SECRET_KEY'),
                         'sign_name' => '小周之家',
                     ],
                 ],

@@ -12,6 +12,7 @@ namespace App\Http\Services;
 use App\Constant\OptionConstant;
 use App\Models\Banner;
 use App\Models\HomeNav;
+use App\Models\Notice;
 use App\Models\Option;
 
 class HomeService
@@ -72,7 +73,7 @@ class HomeService
     }
 
     /**
-     * 首页导航
+     * 获取首页导航ICON
      *
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
@@ -95,5 +96,18 @@ class HomeService
             ->get();
 
         return $data;
+    }
+
+    /**
+     * 获取首页公告
+     *
+     * @return array
+     */
+    public static function getHomeNotice()
+    {
+        return Notice::query()->select(['id', 'content', 'created_at'])->where([
+            ['type', '=', Notice::TYPE_HOME],
+            ['status', '=', Notice::STATUS_YES]
+        ])->first() ?: [];
     }
 }

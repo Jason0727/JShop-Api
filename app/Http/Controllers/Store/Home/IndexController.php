@@ -12,8 +12,6 @@ use App\Models\Banner;
 class IndexController extends Controller
 {
     /**
-     * 首页
-     *
      * @return false|string
      */
     public function __invoke()
@@ -26,13 +24,16 @@ class IndexController extends Controller
         $homeNavList = HomeService::getHomeNavList();
         # 商城配置
         $store = StoreService::getStoreConfig();
+        # 公告
+        $notice = HomeService::getHomeNotice();
 
         # 返回
         $data = [
             'module_list' => $moduleList,
             'banner_list' => $bannerList,
             'home_nav_list' => $homeNavList,
-            'store' => $store
+            'store' => $store,
+            'notice' => $notice
         ];
 
         return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);

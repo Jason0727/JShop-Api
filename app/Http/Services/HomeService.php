@@ -15,6 +15,7 @@ use App\Models\HomeNav;
 use App\Models\Notice;
 use App\Models\Option;
 use App\Models\Topic;
+use App\Models\Video;
 
 class HomeService
 {
@@ -137,6 +138,33 @@ class HomeService
             ->orderBy('created_at', 'desc')
             ->get();
         $data['topic'] = $topic;
+
+        return $data;
+    }
+
+    /**
+     * 获取首页视频
+     *
+     * @param array $moduleList
+     * @return array
+     */
+    public static function getVideo(array $moduleList = [])
+    {
+        if (empty($moduleList)) return [];
+
+        $data = [];
+        foreach ($moduleList as $item) {
+            if ($item['name'] == 'video') {
+                $data = Video::query()->select([
+                    'id',
+                    'title',
+                    'video_url',
+                    'cover_url'
+                ])->where([
+                    ['id', '=', $item['video_id']]
+                ])->first() ?: [];
+            }
+        }
 
         return $data;
     }

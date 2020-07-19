@@ -754,7 +754,7 @@ class OptionsSeeder extends Seeder
                 ['name' => 'miaosha'],
                 ['name' => 'block-1'],
                 ['name' => 'pintuan'],
-                ['name' => 'video-2'],
+                ['name' => 'video-1'],
                 ['name' => 'yuyue'],
                 ['name' => 'single_cat-1'],
                 ['name' => 'all_cat'],

@@ -39,5 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TopicsSeeder::class);
         # 用户专题收藏
         $this->call(TopicFavoritesSeeder::class);
+        # 视频
+        $this->call(VideosSeeder::class);
     }
 }

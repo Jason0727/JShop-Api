@@ -28,6 +28,8 @@ class IndexController extends Controller
         $notice = HomeService::getHomeNotice();
         # 专题
         $topic = HomeService::getHomeTopic();
+        # 视频
+        $video = HomeService::getVideo($moduleList);
 
         # 返回
         $data = [
@@ -36,7 +38,8 @@ class IndexController extends Controller
             'home_nav_list' => $homeNavList,
             'store' => $store,
             'notice' => $notice,
-            'topic_list' => $topic
+            'topic_list' => $topic,
+            'video' => $video
         ];
 
         return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);

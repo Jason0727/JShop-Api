@@ -33,5 +33,11 @@ class DatabaseSeeder extends Seeder
         $this->call(HomeNavsSeeder::class);
         # 通知
         $this->call(NoticesSeeder::class);
+        # 专题类型
+        $this->call(TopicTypesSeeder::class);
+        # 专题
+        $this->call(TopicsSeeder::class);
+        # 用户专题收藏
+        $this->call(TopicFavoritesSeeder::class);
     }
 }

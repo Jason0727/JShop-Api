@@ -14,6 +14,7 @@ use App\Models\Banner;
 use App\Models\HomeNav;
 use App\Models\Notice;
 use App\Models\Option;
+use App\Models\Topic;
 
 class HomeService
 {
@@ -105,9 +106,38 @@ class HomeService
      */
     public static function getHomeNotice()
     {
-        return Notice::query()->select(['id', 'content', 'created_at'])->where([
+        return Notice::query()->select(['id', 'name', 'icon_url', 'bg_color', 'color', 'content', 'created_at'])->where([
             ['type', '=', Notice::TYPE_HOME],
             ['status', '=', Notice::STATUS_YES]
         ])->first() ?: [];
+    }
+
+    /**
+     * 获取首页专题
+     *
+     * @return array
+     */
+    public static function getHomeTopic()
+    {
+        $data = [];
+        # 配置
+        $config = Option::getOne(OptionConstant::TOPIC_CONFIG);
+        if ($config === false) return [];
+        $data['config'] = $config->decode();
+        # 专题列表
+        $topic = Topic::query()->select([
+            'id',
+            'sub_title',
+            'tag_url',
+        ])->where([
+            ['status', '=', Topic::STATUS_YES]
+        ])
+            ->limit(5)
+            ->orderBy('sort', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $data['topic'] = $topic;
+
+        return $data;
     }
 }

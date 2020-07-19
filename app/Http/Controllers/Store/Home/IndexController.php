@@ -26,6 +26,8 @@ class IndexController extends Controller
         $store = StoreService::getStoreConfig();
         # 公告
         $notice = HomeService::getHomeNotice();
+        # 专题
+        $topic = HomeService::getHomeTopic();
 
         # 返回
         $data = [
@@ -33,7 +35,8 @@ class IndexController extends Controller
             'banner_list' => $bannerList,
             'home_nav_list' => $homeNavList,
             'store' => $store,
-            'notice' => $notice
+            'notice' => $notice,
+            'topic_list' => $topic
         ];
 
         return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);

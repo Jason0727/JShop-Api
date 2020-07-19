@@ -745,9 +745,9 @@ class OptionsSeeder extends Seeder
             'title' => '首页模块',
             'key' => 'HOME_PAGE_MODULE',
             'value' => json_encode([
+                ['name' => 'notice'],
                 ['name' => 'search'],
                 ['name' => 'banner'],
-                ['name' => 'notice'],
                 ['name' => 'nav'],
                 ['name' => 'topic'],
                 ['name' => 'coupon'],
@@ -906,6 +906,13 @@ class OptionsSeeder extends Seeder
                         'new_url' => '/pages/user/user',
                     ]
                 ]
+            ], JSON_UNESCAPED_UNICODE)
+        ];
+        $this->data[] = [
+            'title' => '专题配置',
+            'key' => 'TOPIC_CONFIG',
+            'value' => json_encode([
+                'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-19/e86fd21dfd999881eab4acd6f41a21ec.png'
             ], JSON_UNESCAPED_UNICODE)
         ];
     }

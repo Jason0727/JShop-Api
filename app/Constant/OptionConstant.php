@@ -21,4 +21,6 @@ class OptionConstant
     const TOP_NAV_BAR = 'TOP_NAV_BAR';
     # 首页模块
     const HOME_PAGE_MODULE = 'HOME_PAGE_MODULE';
+    # 专题配置
+    const TOPIC_CONFIG = 'TOPIC_CONFIG';
 }

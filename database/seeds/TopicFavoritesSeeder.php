@@ -1,10 +1,10 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use App\Models\Notice;
+use App\Models\TopicFavorite;
+use Carbon\Carbon;
 
-class NoticesSeeder extends Seeder
+class TopicFavoritesSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +22,7 @@ class NoticesSeeder extends Seeder
     {
         $this->formatData();
 
-        Notice::query()->insert($this->data);
+        TopicFavorite::query()->insert($this->data);
     }
 
     /**
@@ -32,13 +32,8 @@ class NoticesSeeder extends Seeder
     {
         $this->data[] = [
             'id' => 1,
-            'name' => '公告',
-            'type' => Notice::TYPE_HOME,
-            'status' => Notice::STATUS_YES,
-            'icon_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-18/a0866bc4d8cb0034053e1429a92a1ba5.png',
-            'bg_color' => '#f67f79',
-            'color' => '#ffffff',
-            'content' => '感冒低发期，天气舒适，请注意多吃蔬菜水果，多喝水哦',
+            'topic_id' => 1,
+            'user_id' => 1,
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()
         ];

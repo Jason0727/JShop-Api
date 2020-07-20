@@ -33,6 +33,7 @@ class NoticesSeeder extends Seeder
         $this->data[] = [
             'id' => 1,
             'name' => '公告',
+            'platform_id' => 1,
             'type' => Notice::TYPE_HOME,
             'status' => Notice::STATUS_YES,
             'icon_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-18/a0866bc4d8cb0034053e1429a92a1ba5.png',

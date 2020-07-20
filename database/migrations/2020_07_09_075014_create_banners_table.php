@@ -29,6 +29,9 @@ class CreateBannersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             # 索引
+            $table->index(['platform_id', 'type', 'scene']);
+            $table->index('sort');
+            $table->index('created_at');
         });
         # 表注释
         DB::statement('ALTER TABLE `banners` comment = "导航轮播（广告位）表"');

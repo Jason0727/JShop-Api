@@ -19,6 +19,7 @@ class CreateTopicsTable extends Migration
             $table->id();
             $table->string('title')->comment('标题');
             $table->string('sub_title')->nullable()->comment('副标题');
+            $table->integer('platform_id')->comment('外键，关联平台表ID');
             $table->string('tag_url')->nullable()->comment('标签图标url');
             $table->string('cover_url')->nullable()->comment('封面图');
             $table->string('share_url')->nullable()->comment('分享图');
@@ -37,8 +38,9 @@ class CreateTopicsTable extends Migration
             $table->integer('read_count_total')->virtualAs("`read_count` + `virtual_read_count`")->comment('阅读量(总)');
             $table->integer('agree_count_total')->virtualAs("`agree_count` + `virtual_agree_count`")->comment('点赞数(总)');
             # 索引
+            $table->index(['platform_id']);
             $table->index(['topic_type_id']);
-            $table->index(['sort']);
+            $table->index(['sort', 'created_at']);
             $table->index(['layout']);
         });
         # 表注释

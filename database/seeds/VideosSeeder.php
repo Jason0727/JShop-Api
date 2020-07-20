@@ -33,6 +33,7 @@ class VideosSeeder extends Seeder
         $this->data[] = [
             'id' => 1,
             'title' => '首页推荐视频',
+            'platform_id' => 1,
             'video_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/videos/2020-07-19/130efded630be21a2eabef215a4304cf.mp4',
             'status' => Video::STATUS_YES,
             'sort' => 0,

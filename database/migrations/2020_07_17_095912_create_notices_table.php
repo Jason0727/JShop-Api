@@ -18,6 +18,7 @@ class CreateNoticesTable extends Migration
             # 字段
             $table->id();
             $table->string('name')->comment('名称');
+            $table->integer('platform_id')->comment('外键，关联平台表ID');
             $table->tinyInteger('type')->comment("类型 1 首页");
             $table->tinyInteger('status')->comment('状态 0 关闭 1 开启');
             $table->string('icon_url')->comment('图标url');
@@ -26,10 +27,11 @@ class CreateNoticesTable extends Migration
             $table->text('content')->comment('内容');
             $table->timestamps();
             # 索引
-            $table->index(['type', 'status']);
+            $table->index(['platform_id', 'type', 'status']);
+            $table->index(['created_at']);
         });
         # 表注释
-        DB::statement('ALTER TABLE `notices` comment = "通知表"');
+        DB::statement('ALTER TABLE `notices` comment = "公告表"');
     }
 
     /**

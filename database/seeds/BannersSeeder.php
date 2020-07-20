@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Banner;
+use Carbon\Carbon;
 
 class BannersSeeder extends Seeder
 {
@@ -39,7 +40,9 @@ class BannersSeeder extends Seeder
             'scene' => 'HOME_INDEX',
             'open_type' => 0,
             'link_url' => null,
-            'appid' => null
+            'appid' => null,
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
         ];
         $this->data[] = [
             'id' => 2,
@@ -51,7 +54,9 @@ class BannersSeeder extends Seeder
             'scene' => 'HOME_INDEX',
             'open_type' => 1,
             'link_url' => '/pages/cat/cat',
-            'appid' => null
+            'appid' => null,
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
         ];
         $this->data[] = [
             'id' => 3,
@@ -63,7 +68,9 @@ class BannersSeeder extends Seeder
             'scene' => 'HOME_INDEX',
             'open_type' => 2,
             'link_url' => '/pages/index/index',
-            'appid' => '1234567890'
+            'appid' => '1234567890',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
         ];
     }
 }

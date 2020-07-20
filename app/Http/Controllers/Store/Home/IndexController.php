@@ -16,30 +16,15 @@ class IndexController extends Controller
      */
     public function __invoke()
     {
-        # 模块(分类未处理)
-        $moduleList = HomeService::getModuleList();
-        # 轮播图
-        $bannerList = HomeService::getBannerList(Banner::SCENE_HOME_INDEX);
-        # 导航
-        $homeNavList = HomeService::getHomeNavList();
+        # 模块
+        $module = HomeService::getHomeModuleData();
         # 商城配置
         $store = StoreService::getStoreConfig();
-        # 公告
-        $notice = HomeService::getHomeNotice();
-        # 专题
-        $topic = HomeService::getHomeTopic();
-        # 视频
-        $video = HomeService::getVideo($moduleList);
 
         # 返回
         $data = [
-            'module_list' => $moduleList,
-            'banner_list' => $bannerList,
-            'home_nav_list' => $homeNavList,
-            'store' => $store,
-            'notice' => $notice,
-            'topic_list' => $topic,
-            'video' => $video
+            'module' => $module,
+            'store' => $store
         ];
 
         return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);

@@ -24,7 +24,7 @@ class HomeService
      *
      * @return array
      */
-    public static function getModuleList()
+    private static function getModuleList()
     {
         $data = Option::getOne(OptionConstant::HOME_PAGE_MODULE);
         if ($data === false) return [];
@@ -57,19 +57,27 @@ class HomeService
      * @param string $scene
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public static function getBannerList(string $scene)
+    private static function getHomeBannerList()
     {
         $platform = app('platform');
 
         $data = Banner::query()
+            ->select([
+                'id',
+                'title',
+                'pic_url',
+                'open_type',
+                'link_url',
+                'appid'
+            ])
             ->where([
                 ['platform_id', '=', $platform->id],
-                ['scene', '=', $scene]
+                ['type', '=', Banner::TYPE_BANNER],
+                ['scene', '=', Banner::SCENE_HOME_INDEX]
             ])
             ->orderBy('sort', 'asc')
             ->orderBy('created_at', 'desc')
-            ->get()
-            ->makeHidden(['id', 'platform_id', 'sort', 'scene', 'created_at', 'updated_at', 'deleted_at']);
+            ->get();
 
         return $data;
     }
@@ -79,7 +87,7 @@ class HomeService
      *
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public static function getHomeNavList()
+    private static function getHomeNavList()
     {
         $platform = app('platform');
 
@@ -89,10 +97,11 @@ class HomeService
             'open_type',
             'link_url',
             'appid',
-        ])->where([
-            ['status', '=', HomeNav::STATUS_YES],
-            ['platform_id', '=', $platform->id]
         ])
+            ->where([
+                ['status', '=', HomeNav::STATUS_YES],
+                ['platform_id', '=', $platform->id]
+            ])
             ->orderBy('sort', 'asc')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -105,12 +114,26 @@ class HomeService
      *
      * @return array
      */
-    public static function getHomeNotice()
+    private static function getHomeNotice()
     {
-        return Notice::query()->select(['id', 'name', 'icon_url', 'bg_color', 'color', 'content', 'created_at'])->where([
-            ['type', '=', Notice::TYPE_HOME],
-            ['status', '=', Notice::STATUS_YES]
-        ])->first() ?: [];
+        $platform = app('platform');
+
+        $data = Notice::query()
+            ->select([
+                'id',
+                'name',
+                'icon_url',
+                'bg_color',
+                'color',
+                'content'
+            ])
+            ->where([
+                ['platform_id', '=', $platform->id],
+                ['type', '=', Notice::TYPE_HOME],
+                ['status', '=', Notice::STATUS_YES]
+            ])->first() ?: [];
+
+        return $data;
     }
 
     /**
@@ -118,26 +141,32 @@ class HomeService
      *
      * @return array
      */
-    public static function getHomeTopic()
+    private static function getHomeTopic()
     {
         $data = [];
         # 配置
         $config = Option::getOne(OptionConstant::TOPIC_CONFIG);
         if ($config === false) return [];
         $data['config'] = $config->decode();
+
+        $platform = app('platform');
+
         # 专题列表
-        $topic = Topic::query()->select([
-            'id',
-            'sub_title',
-            'tag_url',
-        ])->where([
-            ['status', '=', Topic::STATUS_YES]
-        ])
+        $topic = Topic::query()
+            ->select([
+                'id',
+                'sub_title',
+                'tag_url',
+            ])
+            ->where([
+                ['platform_id', '=', $platform->id],
+                ['status', '=', Topic::STATUS_YES],
+            ])
             ->limit(5)
             ->orderBy('sort', 'asc')
             ->orderBy('created_at', 'desc')
             ->get();
-        $data['topic'] = $topic;
+        $data['params'] = $topic;
 
         return $data;
     }
@@ -145,27 +174,84 @@ class HomeService
     /**
      * 获取首页视频
      *
-     * @param array $moduleList
+     * @param int $videoId
      * @return array
      */
-    public static function getVideo(array $moduleList = [])
+    private static function getHomeVideo(int $videoId)
     {
-        if (empty($moduleList)) return [];
+        $data = Video::query()
+            ->select([
+                'id',
+                'title',
+                'video_url',
+                'cover_url'
+            ])
+            ->where([
+                ['id', '=', $videoId]
+            ])->first() ?: [];
 
-        $data = [];
-        foreach ($moduleList as $item) {
-            if ($item['name'] == 'video') {
-                $data = Video::query()->select([
-                    'id',
-                    'title',
-                    'video_url',
-                    'cover_url'
-                ])->where([
-                    ['id', '=', $item['video_id']]
-                ])->first() ?: [];
+        return $data;
+    }
+
+    /**
+     * 获取首页模块
+     *
+     * @return array
+     */
+    public static function getHomeModuleData()
+    {
+        # 模块
+        $module = self::getModuleList();
+        foreach ($module as &$item) {
+            # 模块类型
+            switch ($item['name']) {
+                # 公告
+                case 'notice':
+                    $item['params'] = self::getHomeNotice();
+                    break;
+                # 搜索
+                case 'search':
+                    break;
+                # 轮播图
+                case 'banner':
+                    $item['params'] = self::getHomeBannerList();
+                    break;
+                # 导航ICON
+                case 'nav':
+                    $item['params'] = self::getHomeNavList();
+                    break;
+                # 专题
+                case 'topic':
+                    ($homeTopicData = self::getHomeTopic()) && ($item['config'] = $homeTopicData['config']) && ($item['params'] = $homeTopicData['params']);
+                    break;
+                # 视频
+                case 'video':
+                    $item['params'] = self::getHomeVideo($item['video_id']);
+                    break;
+                # 优惠券
+                case 'coupon':
+                    break;
+                # 秒杀
+                case 'miaosha':
+                    break;
+                # 拼团
+                case 'pintuan':
+                    break;
+                # 预约
+                case 'yuyue':
+                    break;
+                # 图片魔方
+                case 'block':
+                    break;
+                # 单一分类
+                case 'single_cat':
+                    break;
+                # 所有分类
+                case 'all_cat':
+                    break;
             }
         }
 
-        return $data;
+        return $module;
     }
 }

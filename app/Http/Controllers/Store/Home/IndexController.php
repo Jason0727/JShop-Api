@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Store\Home;
 
 use App\Constant\ApiConstant;
 use App\Http\Controllers\Controller;
-use App\Http\Services\BannerService;
 use App\Http\Services\HomeService;
 use App\Http\Services\StoreService;
-use App\Models\Banner;
 
 class IndexController extends Controller
 {

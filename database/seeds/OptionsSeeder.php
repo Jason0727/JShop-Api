@@ -485,7 +485,7 @@ class OptionsSeeder extends Seeder
                     ],
                     'ms_activity_bg' => [
                         'url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-09/b5585ff2123987387af810834214667b.png',
-                        'remark' => '秒杀活动到计时背景图'
+                        'remark' => '秒杀活动倒计时背景图'
                     ],
                 ],
                 'notice' => [
@@ -756,6 +756,7 @@ class OptionsSeeder extends Seeder
                 ['name' => 'pintuan'],
                 ['name' => 'video-1'],
                 ['name' => 'yuyue'],
+                ['name' => 'mch'],
                 ['name' => 'single_cat-1'],
                 ['name' => 'all_cat'],
             ], JSON_UNESCAPED_UNICODE)

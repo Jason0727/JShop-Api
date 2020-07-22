@@ -24,7 +24,7 @@ class HomeService
      *
      * @return array
      */
-    private static function getModuleList()
+    private static function getHomeModule()
     {
         $data = Option::getOne(OptionConstant::HOME_PAGE_MODULE);
         if ($data === false) return [];
@@ -57,7 +57,7 @@ class HomeService
      * @param string $scene
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    private static function getHomeBannerList()
+    private static function getHomeBanner()
     {
         $platform = app('platform');
 
@@ -87,7 +87,7 @@ class HomeService
      *
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    private static function getHomeNavList()
+    private static function getHomeNav()
     {
         $platform = app('platform');
 
@@ -193,6 +193,12 @@ class HomeService
         return $data;
     }
 
+    // 获取首页推荐商户
+    private static function getRecommendMch()
+    {
+
+    }
+
     /**
      * 获取首页模块
      *
@@ -201,7 +207,7 @@ class HomeService
     public static function getHomeModuleData()
     {
         # 模块
-        $module = self::getModuleList();
+        $module = self::getHomeModule();
         foreach ($module as &$item) {
             # 模块类型
             switch ($item['name']) {
@@ -214,11 +220,11 @@ class HomeService
                     break;
                 # 轮播图
                 case 'banner':
-                    $item['params'] = self::getHomeBannerList();
+                    $item['params'] = self::getHomeBanner();
                     break;
                 # 导航ICON
                 case 'nav':
-                    $item['params'] = self::getHomeNavList();
+                    $item['params'] = self::getHomeNav();
                     break;
                 # 专题
                 case 'topic':
@@ -227,6 +233,10 @@ class HomeService
                 # 视频
                 case 'video':
                     $item['params'] = self::getHomeVideo($item['video_id']);
+                    break;
+                # 好店推荐
+                case 'mch':
+//                    $item['params'] = self::getHomeVideo($item['video_id']);
                     break;
                 # 优惠券
                 case 'coupon':

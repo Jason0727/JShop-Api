@@ -41,5 +41,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TopicFavoritesSeeder::class);
         # 视频
         $this->call(VideosSeeder::class);
+        # 商户所售类目
+        $this->call(MerchantCommonCategoriesSeeder::class);
+        # 商户
+        $this->call(MerchantsSeeder::class);
     }
 }

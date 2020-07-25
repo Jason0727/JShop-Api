@@ -12,6 +12,7 @@ namespace App\Http\Services;
 use App\Constant\OptionConstant;
 use App\Models\Banner;
 use App\Models\HomeNav;
+use App\Models\Merchant;
 use App\Models\Notice;
 use App\Models\Option;
 use App\Models\Topic;
@@ -193,10 +194,32 @@ class HomeService
         return $data;
     }
 
-    // 获取首页推荐商户
-    private static function getRecommendMch()
+    /**
+     * 获取首页推荐商户
+     *
+     * @return array
+     */
+    private static function getRecommendMerchant()
     {
+        $platform = app('platform');
 
+        $data = Merchant::query()
+            ->select([
+                'id',
+                'name',
+                'logo_url',
+            ])
+            ->where([
+                ['is_open', '=', Merchant::IS_OPEN_YES],
+                ['is_lock', '=', Merchant::IS_LOCK_NO],
+                ['review_status', '=', Merchant::REVIEW_SUCCESS],
+                ['is_recommend', '=', Merchant::IS_RECOMMEND_YES],
+                ['platform_id', '=', $platform->id],
+            ])
+            ->orderBy('sort', 'desc')
+            ->get();
+
+        return $data ?: [];
     }
 
     /**
@@ -236,7 +259,7 @@ class HomeService
                     break;
                 # 好店推荐
                 case 'mch':
-//                    $item['params'] = self::getHomeVideo($item['video_id']);
+                    $item['params'] = self::getRecommendMerchant();
                     break;
                 # 优惠券
                 case 'coupon':

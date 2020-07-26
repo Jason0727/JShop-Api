@@ -45,5 +45,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MerchantCommonCategoriesSeeder::class);
         # 商户
         $this->call(MerchantsSeeder::class);
+        # 图片魔方
+        $this->call(HomeBlocksSeeder::class);
     }
 }

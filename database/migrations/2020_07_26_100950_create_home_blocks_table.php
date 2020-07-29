@@ -21,10 +21,11 @@ class CreateHomeBlocksTable extends Migration
             $table->tinyInteger('status')->default(0)->comment('状态 0 关闭 1 开启');
             $table->json('data')->comment('json数据，格式: [{"pic_url":"xxx","open_type":0,"link_url":"/page/index/index","appid":"xxxx"},{}]，open_type可能值：跳转类型，0 不跳转 1 内部小程序跳转 2 外部小程序跳转 3 h5跳转');
             $table->tinyInteger('style')->default(0)->comment('样式 0 默认 1 样式一 2 样式二');
+            $table->integer('platform_id')->comment('外键，关联平台表ID');
             $table->timestamps();
             # 索引
             $table->index(['name']);
-            $table->index(['status']);
+            $table->index(['platform_id', 'status']);
         });
         # 表注释
         DB::statement('ALTER TABLE `home_blocks` comment = "图片魔方表"');

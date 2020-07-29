@@ -11,6 +11,7 @@ namespace App\Http\Services;
 
 use App\Constant\OptionConstant;
 use App\Models\Banner;
+use App\Models\HomeBlock;
 use App\Models\HomeNav;
 use App\Models\Merchant;
 use App\Models\Notice;
@@ -223,6 +224,29 @@ class HomeService
     }
 
     /**
+     * 获取首页图片魔方
+     *
+     * @param int $blockId
+     * @return array|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     */
+    public static function getHomeBlock(int $blockId)
+    {
+        $platform = app('platform');
+
+        $data = HomeBlock::query()->select(['id', 'data', 'style'])->where([
+            ['id', '=', $blockId],
+            ['platform_id', '=', $platform->id],
+            ['status', '=', HomeBlock::STATUS_YES],
+        ])->first();
+        if (empty($data)) return [];
+
+        # 数据处理
+        $data['data'] = $data['data'] ? json_decode($data['data'], true) : [];
+
+        return $data;
+    }
+
+    /**
      * 获取首页模块
      *
      * @return array
@@ -275,6 +299,7 @@ class HomeService
                     break;
                 # 图片魔方
                 case 'block':
+                    $item['params'] = self::getHomeBlock($item['block_id']);
                     break;
                 # 单一分类
                 case 'single_cat':

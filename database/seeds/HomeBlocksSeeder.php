@@ -53,12 +53,6 @@ class HomeBlocksSeeder extends Seeder
                     'open_type' => 0,
                     'link_url' => '',
                     'appid' => ''
-                ],
-                [
-                    'pic_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-26/9d65a945a3b651b0c5370e7eb028283d.png',
-                    'open_type' => 0,
-                    'link_url' => '',
-                    'appid' => ''
                 ]
             ], JSON_UNESCAPED_UNICODE),
             'style' => HomeBlock::STYLE_DEFAULT,

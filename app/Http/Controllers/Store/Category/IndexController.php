@@ -41,8 +41,6 @@ class IndexController extends Controller
         # 递归数据处理
         $result = CategoryService::getCategoryTree($data);
 
-        # 缓存处理
-
         # 返回
         return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $result);
     }

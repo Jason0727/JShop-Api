@@ -38,11 +38,11 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
  * ========================================================================
  */
 //Route::group(['middleware' => 'auth.jwt'], function () {
-    # oss文件上传
-    Route::group(['prefix' => 'oss', 'namespace' => 'Oss'], function () {
-        # 通用文件上传
-        Route::post('upload', 'UploadController');
-    });
+# oss文件上传
+Route::group(['prefix' => 'oss', 'namespace' => 'Oss'], function () {
+    # 通用文件上传
+    Route::post('upload', 'UploadController');
+});
 //});
 
 /**
@@ -63,6 +63,11 @@ Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
     # 首页
     Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
         # 首页
+        Route::get('index', 'IndexController');
+    });
+    # 分类
+    Route::group(['prefix' => 'category', 'namespace' => 'Category'], function () {
+        # 列表
         Route::get('index', 'IndexController');
     });
 });

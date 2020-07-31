@@ -41,7 +41,7 @@ class OptionsSeeder extends Seeder
                 'contact_tel' => '13601587485', # 联系电话
                 'show_customer_service' => 1, # 是否显示在线客服 0 否 1 是
                 'customer_service_url' => "https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/3ad1386a0c0f25f5badbc629baeed40e.jpg", # 客服图标url
-                'cat_style' => 1, # 分类页面样式
+                'cat_style' => 4, # 分类页面样式 1 大图模式(不显示侧栏) 2 大图模式(显示侧栏) 3 小图模式(不显示侧栏) 4 小图模式(显示侧栏) 5 商品列表模式
                 'cat_goods_count' => 2, # 首页分类展示数量
                 'address' => "上海上海市浦东新区博兴路1768弄28号", # 商城地址
                 'is_offline' => 1, # 是否开启自提 0 否 1 是

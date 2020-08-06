@@ -2,18 +2,17 @@
 /**
  * Created by PhpStorm
  * User: Jason
- * Date: 2020-05-23
- * Time: 16:10
+ * Date: 2020-08-06
+ * Time: 15:48
  */
 
-namespace App\Http\Requests;
+namespace traits;
 
 
 use App\Constant\ApiConstant;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
 
-class BaseRequest extends FormRequest
+trait SingleValidateErrorTrait
 {
     /**
      * 重构表单验证失败返回格式

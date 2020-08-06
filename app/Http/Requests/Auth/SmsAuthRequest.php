@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Http\Requests\BaseRequest;
+use Illuminate\Foundation\Http\FormRequest;
+use traits\SingleValidateErrorTrait;
 
-class SmsAuthRequest extends BaseRequest
+class SmsAuthRequest extends FormRequest
 {
+    use SingleValidateErrorTrait;
+
     /**
      * Get the validation rules that apply to the request.
      *

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Option;
+use App\Constant\OptionConstant;
 
 class OptionsSeeder extends Seeder
 {
@@ -31,7 +32,7 @@ class OptionsSeeder extends Seeder
     {
         $this->data[] = [
             'title' => '商城配置',
-            'key' => 'STORE_CONFIG',
+            'key' => OptionConstant::STORE_CONFIG,
             'value' => json_encode([
                 'name' => '胖海豚', # 商城名称
                 'logo' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-29/a9d0e3956d3830319a84627b4bfde01c.jpg', # 商城Logo Url
@@ -62,7 +63,7 @@ class OptionsSeeder extends Seeder
         ];
         $this->data[] = [
             'title' => '服务器默认图片',
-            'key' => 'SERVICE_DEFAULT_IMG',
+            'key' => OptionConstant::SERVICE_DEFAULT_IMG,
             'value' => json_encode([
                 'integralMall' => [ # 模块名称
                     'register' => [ # 小程序页面
@@ -743,7 +744,7 @@ class OptionsSeeder extends Seeder
         ];
         $this->data[] = [
             'title' => '首页模块',
-            'key' => 'HOME_PAGE_MODULE',
+            'key' => OptionConstant::HOME_PAGE_MODULE,
             'value' => json_encode([
                 ['name' => 'notice'],
                 ['name' => 'search'],
@@ -762,97 +763,8 @@ class OptionsSeeder extends Seeder
             ], JSON_UNESCAPED_UNICODE)
         ];
         $this->data[] = [
-            'title' => '分销商配置',
-            'key' => 'SHARE_CUSTOM_DATA',
-            'value' => json_encode([
-                'menus' => [
-                    'money' => [
-                        'name' => '分销佣金',
-                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-12/df76230475dc2bf25df5e4b35f35f6a7.png',
-                        'open_type' => 'navigator',
-                        'url' => '/pages/share-money/share-money',
-                        'tel' => '',
-                    ],
-                    'order' => [
-                        'name' => '分销订单',
-                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/0f57bcfe99b1d949801b274437ebb302.png',
-                        'open_type' => 'navigator',
-                        'url' => '/pages/share-order/share-order',
-                        'tel' => '',
-                    ],
-                    'cash' => [
-                        'name' => '提现明细',
-                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/a250e5b5fc365e93613b2bdf9e4ce8e7.png',
-                        'open_type' => 'navigator',
-                        'url' => '/pages/cash-detail/cash-detail',
-                        'tel' => '',
-                    ],
-                    'team' => [
-                        'name' => '我的团队',
-                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/9808f69cc0323b622612a291be0e515a.png',
-                        'open_type' => 'navigator',
-                        'url' => '/pages/share-team/share-team',
-                        'tel' => '',
-                    ],
-                    'qrcode' => [
-                        'name' => '推广二维码',
-                        'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-06-28/2180834d247b678cdb07bc3493aea60d.png',
-                        'open_type' => 'navigator',
-                        'url' => '/pages/share-qrcode/share-qrcode',
-                        'tel' => '',
-                    ],
-                ],
-                'words' => [
-                    'can_be_presented' => [
-                        'name' => '可提现佣金',
-                        'default' => '可提现佣金',
-                    ],
-                    'already_presented' => [
-                        'name' => '已提现佣金',
-                        'default' => '已提现佣金',
-                    ],
-                    'parent_name' => [
-                        'name' => '推荐人',
-                        'default' => '推荐人',
-                    ],
-                    'pending_money' => [
-                        'name' => '待打款佣金',
-                        'default' => '待打款佣金',
-                    ],
-                    'cash' => [
-                        'name' => '提现',
-                        'default' => '提现',
-                    ],
-                    'user_instructions' => [
-                        'name' => '用户须知',
-                        'default' => '用户须知',
-                    ],
-                    'apply_cash' => [
-                        'name' => '我要提现',
-                        'default' => '我要提现',
-                    ],
-                    'cash_type' => [
-                        'name' => '提现方式',
-                        'default' => '提现方式',
-                    ],
-                    'cash_money' => [
-                        'name' => '提现金额',
-                        'default' => '提现金额',
-                    ],
-                    'order_money_un' => [
-                        'name' => '未结算佣金',
-                        'default' => '未结算佣金',
-                    ],
-                    'share_name' => [
-                        'name' => '分销商',
-                        'default' => '分销商',
-                    ],
-                ]
-            ], JSON_UNESCAPED_UNICODE)
-        ];
-        $this->data[] = [
             'title' => '顶部导航栏配置',
-            'key' => 'TOP_NAV_BAR',
+            'key' => OptionConstant::TOP_NAV_BAR,
             'value' => json_encode([
                 'frontColor' => '#ffffff', # 字体颜色
                 'backgroundColor' => '#81f016', # 背景颜色
@@ -861,7 +773,7 @@ class OptionsSeeder extends Seeder
         ];
         $this->data[] = [
             'title' => '底部导航栏配置',
-            'key' => 'BOTTOM_NAV_BAR',
+            'key' => OptionConstant::BOTTOM_NAV_BAR,
             'value' => json_encode([
                 'background_image' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==',
                 'border_color' => 'rgba(0,0,0,.1)',
@@ -911,9 +823,45 @@ class OptionsSeeder extends Seeder
         ];
         $this->data[] = [
             'title' => '专题配置',
-            'key' => 'TOPIC_CONFIG',
+            'key' => OptionConstant::TOPIC_CONFIG,
             'value' => json_encode([
                 'icon' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-19/e86fd21dfd999881eab4acd6f41a21ec.png'
+            ], JSON_UNESCAPED_UNICODE)
+        ];
+        $this->data[] = [
+            'title' => '列表红包活动',
+            'key' => OptionConstant::FISSION_RED_PACKAGE_ACTIVITY,
+            'value' => json_encode([
+                'name' => '一起拆红包', # 名称
+                'pic_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-08-06/26c168f5734a69ba7c59ebf30b041d72.png', # 红包封面图
+                'style' => json_encode([ # 样式
+                    'pic_width' => 750,
+                    'pic_height' => 696,
+                ]),
+                'link_url' => '/pages/fxhb/open/open', # 跳转地址
+                'open_type' => 1, # 跳转方式
+                'page_id' => 'fxhb', # 未知作用
+            ], JSON_UNESCAPED_UNICODE)
+        ];
+        $this->data[] = [
+            'title' => '裂变红包配置',
+            'key' => OptionConstant::FISSION_RED_PACKAGE_CONFIG,
+            'value' => json_encode([
+                'user_num' => 2, # 拆红包所需用户数,最少2人
+                'total_money' => 10, # 红包总金额
+                'use_minimum' => 1, # 赠送的红包最低消费金额
+                'expire' => 30, # 红包有效期，单位:天
+                'distribute_type' => 0, # 红包分配类型 0 随机 1 平分
+                'single_expire' => 0, # 每个红包有效期，单位:小时
+                'status' => 1, # 是否开启活动 0 否 1 是
+                'rule' => '1.用户可邀请好友共同拆红包，满N人则拆红包现金红包成功，共同瓜分总金额为N元的红包，每人获得红包金额随机（或平均）; 其中随机一人将获得“手气最佳红包”。
+                        2.每个红包发起后24小时未组满N人即失败，无红包奖励。
+                        3.活动期间，不能帮同一好友拆多次，但发起拆红包次数不限。
+                        4.发起拆红包的用户需在该红包满N人拆成功或逾期失败后，才可再发起拆下一个红包。
+                        5.一起拆红包活动的红包均为满减现金券。
+                        6.本公司对该活动规则保留最终解释权。', # 规则
+                'share_title' => '一起拆红包', # 分享标题
+                'share_pic_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-08-06/f106a14d1bb6048a006fe09ff1a1dac8.jpg', # 分享图url
             ], JSON_UNESCAPED_UNICODE)
         ];
     }

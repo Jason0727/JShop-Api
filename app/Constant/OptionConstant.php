@@ -23,4 +23,8 @@ class OptionConstant
     const HOME_PAGE_MODULE = 'HOME_PAGE_MODULE';
     # 专题配置
     const TOPIC_CONFIG = 'TOPIC_CONFIG';
+    # 裂变红包活动
+    const FISSION_RED_PACKAGE_ACTIVITY = 'FISSION_RED_PACKAGE_ACTIVITY';
+    # 裂变红包配置
+    const FISSION_RED_PACKAGE_CONFIG = 'FISSION_RED_PACKAGE_CONFIG';
 }

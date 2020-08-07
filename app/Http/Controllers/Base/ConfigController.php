@@ -6,7 +6,7 @@
  * Time: 17:43
  */
 
-namespace App\Http\Controllers\Store\Base;
+namespace App\Http\Controllers\Base;
 
 
 use App\Constant\ApiConstant;

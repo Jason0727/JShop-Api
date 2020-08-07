@@ -50,24 +50,27 @@ Route::group(['prefix' => 'oss', 'namespace' => 'Oss'], function () {
  * 商城 路由列表
  * ========================================================================
  */
-Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
-    # 基本信息
-    Route::group(['prefix' => 'base', 'namespace' => 'Base'], function () {
-        # 商城配置
-        Route::get('config', 'ConfigController');
-        # 底部导航栏配置
-        Route::get('bottom-nav-bar', 'BottomNavBarController');
-        # 顶部导航栏配置
-        Route::get('top-nav-bar', 'TopNavBarController');
-    });
+# 基本信息
+Route::group(['prefix' => 'base', 'namespace' => 'Base'], function () {
+    # 商城配置
+    Route::get('config', 'ConfigController');
+    # 底部导航栏配置
+    Route::get('bottom-nav-bar', 'BottomNavBarController');
+    # 顶部导航栏配置
+    Route::get('top-nav-bar', 'TopNavBarController');
+});
+# 首页
+Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     # 首页
-    Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
-        # 首页
-        Route::get('index', 'IndexController');
-    });
-    # 分类
-    Route::group(['prefix' => 'category', 'namespace' => 'Category'], function () {
-        # 列表
-        Route::get('index', 'IndexController');
-    });
+    Route::get('index', 'IndexController');
+});
+# 裂变红包
+Route::group(['prefix' => 'fission-red-package', 'namespace' => 'FissionRedPackage'], function () {
+    # 裂变红包弹窗
+    Route::get('index', 'IndexController');
+});
+# 分类
+Route::group(['prefix' => 'category', 'namespace' => 'Category'], function () {
+    # 列表
+    Route::get('index', 'IndexController');
 });

@@ -829,7 +829,7 @@ class OptionsSeeder extends Seeder
             ], JSON_UNESCAPED_UNICODE)
         ];
         $this->data[] = [
-            'title' => '列表红包活动',
+            'title' => '裂变红包活动',
             'key' => OptionConstant::FISSION_RED_PACKAGE_ACTIVITY,
             'value' => json_encode([
                 'name' => '一起拆红包', # 名称

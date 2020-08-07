@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Store\Category;
+namespace App\Http\Controllers\Category;
 
 use App\Constant\ApiConstant;
 use App\Http\Controllers\Controller;

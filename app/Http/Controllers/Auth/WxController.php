@@ -30,10 +30,12 @@ class WxController extends Controller
             # 请求参数
             $postData = $wxAuthRequest->validationData();
             $platform = app('platform');
+            # todo:用户信息暂时写死，同时验证规则字段也取消了，后期需要打开
             # 获取用户openId(包含unionId)
-            $wx = new Wx($platform);
-            $baseInfo = $wx->getOpenId($postData['code']);
-            if ($baseInfo === false) throw new Exception('登录失败，请稍后再试', ApiConstant::AUTH_ERROR);
+//            $wx = new Wx($platform);
+//            $baseInfo = $wx->getOpenId($postData['code']);
+//            if ($baseInfo === false) throw new Exception('登录失败，请稍后再试', ApiConstant::AUTH_ERROR);
+            $baseInfo['openid'] = 'oreZ65eXUu6ENFm-IQQtvUvaPIgI';
             # 平台用户信息
             $oauthUser = OauthUser::query()->where([
                 ['open_id', '=', $baseInfo['openid']],

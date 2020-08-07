@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class FissionRedPackage implements ShouldQueue
 {
@@ -19,7 +20,8 @@ class FissionRedPackage implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        # 设置延迟时间
+        $this->delay(5);
     }
 
     /**
@@ -29,6 +31,6 @@ class FissionRedPackage implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Log::info("FISSION RED PACKAGE JOB EXEC");
     }
 }

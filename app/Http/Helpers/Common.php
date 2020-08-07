@@ -16,7 +16,7 @@ if (!function_exists('apiResponse')) {
      */
     function apiResponse(string $code, string $msg, array $data = [])
     {
-        return ['code' => $code, 'msg' => $msg, 'data' => $data];
+        return json_encode(['code' => $code, 'msg' => $msg, 'data' => $data], JSON_UNESCAPED_UNICODE);
     }
 }
 

@@ -64,6 +64,11 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     # 首页
     Route::get('index', 'IndexController');
 });
+# 红包
+Route::group(['prefix' => 'fission-red-package', 'namespace' => 'FissionRedPackage'], function () {
+    # 首页
+    Route::get('show', 'ShowController');
+});
 # 分类
 Route::group(['prefix' => 'category', 'namespace' => 'Category'], function () {
     # 列表

@@ -3,6 +3,11 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -29,7 +34,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param \Throwable $exception
      * @return void
      *
      * @throws \Exception
@@ -42,14 +47,51 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Throwable $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
+        // ↓↓↓↓↓↓↓↓↓重构Symfony异常↓↓↓↓↓↓↓
+        if ($exception instanceof BadRequestHttpException) {
+            return response()->json([
+                "code" => 400,
+                "msg" => $exception->getMessage()
+            ]);
+        }
+
+        if ($exception instanceof AccessDeniedHttpException) {
+            return response()->json([
+                "code" => 403,
+                "msg" => "请先登录哦~"
+            ]);
+        }
+
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->json([
+                "code" => 404,
+                "msg" => "哎呀，跑丢了~"
+            ]);
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return response()->json([
+                "code" => 405,
+                "msg" => "臣妾给不了您的请求~"
+            ]);
+        }
+
+        if ($exception instanceof TooManyRequestsHttpException) {
+            return response()->json([
+                "code" => 429,
+                "msg" => "您稍微歇会~"
+            ]);
+        }
+        // ↑↑↑↑↑↑↑↑↑↑↑重构Symfony异常↑↑↑↑↑↑↑↑
+
         return parent::render($request, $exception);
     }
 }

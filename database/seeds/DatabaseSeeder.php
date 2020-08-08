@@ -49,5 +49,7 @@ class DatabaseSeeder extends Seeder
         $this->call(HomeBlocksSeeder::class);
         # 商品分类
         $this->call(CategoriesSeeder::class);
+        # 裂变红包配置
+        $this->call(FissionRedPackageConfigsSeeder::class);
     }
 }

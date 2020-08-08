@@ -12,11 +12,11 @@ if (!function_exists('apiResponse')) {
      * @param string $code
      * @param string $msg
      * @param array $data
-     * @return array
+     * @return false|string
      */
-    function apiResponse(string $code, string $msg, array $data = [])
+    function apiResponse(string $code, string $msg = "操作成功", array $data = [])
     {
-        return json_encode(['code' => $code, 'msg' => $msg, 'data' => $data], JSON_UNESCAPED_UNICODE);
+        return response()->json(['code' => $code, 'msg' => $msg, 'data' => $data]);
     }
 }
 

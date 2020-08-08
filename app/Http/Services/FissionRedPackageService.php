@@ -10,6 +10,7 @@ namespace App\Http\Services;
 
 
 use App\Constant\OptionConstant;
+use App\Models\FissionRedPackageConfig;
 use App\Models\FissionRedPackageRecord;
 use App\Models\Option;
 use Carbon\Carbon;
@@ -34,6 +35,7 @@ class FissionRedPackageService
                 if ($userId > 0) {
                     # 检测是否有未过期的活动
                     $fissionRedPackageRecord = FissionRedPackageRecord::query()->where([
+                        ['config_id', '=', $fissionRedPackageConfig->id],
                         ['user_id', '=', $userId],
                         ['parent_id', '=', 0],
                         ['is_expire', '=', FissionRedPackageRecord::IS_EXPIRE_NO],
@@ -52,7 +54,6 @@ class FissionRedPackageService
         return $data;
     }
 
-
     /**
      * 获取裂变红包活动配置
      *
@@ -61,14 +62,13 @@ class FissionRedPackageService
     public static function getFissionRedPackageConfig()
     {
         # 配置
-        $fissionRedPackageConfig = Option::getOne(OptionConstant::FISSION_RED_PACKAGE_CONFIG);
-        if ($fissionRedPackageConfig === false) return false;
-        $data = $fissionRedPackageConfig->decode();
+        $fissionRedPackageConfig = FissionRedPackageConfig::query()
+            ->where('status', FissionRedPackageConfig::STATUS_YES)
+            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
+            ->first();
 
-        # 状态判断
-        if ($data['status'] != 1) return false;
-
-        return $data;
+        return $fissionRedPackageConfig ?? false;
     }
 
     /**

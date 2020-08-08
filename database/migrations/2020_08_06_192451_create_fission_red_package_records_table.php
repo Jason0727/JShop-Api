@@ -17,6 +17,7 @@ class CreateFissionRedPackageRecordsTable extends Migration
         Schema::create('fission_red_package_records', function (Blueprint $table) {
             # 字段
             $table->id();
+            $table->integer('config_id')->comment('外键，裂变活动配置表ID');
             $table->integer('user_id')->comment('外键，用户ID');
             $table->integer('parent_id')->default(0)->comment('父级用户ID');
             $table->tinyInteger('user_num')->unsigned()->default(2)->comment('拆红包所需用户数，最少2人');

@@ -25,6 +25,4 @@ class OptionConstant
     const TOPIC_CONFIG = 'TOPIC_CONFIG';
     # 裂变红包活动
     const FISSION_RED_PACKAGE_ACTIVITY = 'FISSION_RED_PACKAGE_ACTIVITY';
-    # 裂变红包配置
-    const FISSION_RED_PACKAGE_CONFIG = 'FISSION_RED_PACKAGE_CONFIG';
 }

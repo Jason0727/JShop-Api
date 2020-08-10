@@ -11,6 +11,7 @@ namespace traits;
 
 use App\Constant\ApiConstant;
 use Illuminate\Contracts\Validation\Validator;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 trait SingleValidateErrorTrait
 {
@@ -22,6 +23,6 @@ trait SingleValidateErrorTrait
      */
     protected function failedValidation(Validator $validator)
     {
-        die(apiResponse(ApiConstant::PARAMS_ERROR, $validator->errors()->first()));
+        throw new BadRequestHttpException($validator->errors()->first());
     }
 }

@@ -46,7 +46,7 @@ trait OauthUserTrait
      */
     public function __construct()
     {
-        $this->oauthUser = JWTAuth::getToken() && JWTAuth::parseToken()->check() ? JWTAuth::parseToken()->authenticate() : false;
+        $this->oauthUser = JWTAuth::getToken() && JWTAuth::check() ? JWTAuth::authenticate() : false;
 
         $this->oauthUserId = $this->oauthUser === false ? 0 : $this->oauthUser->id;
 

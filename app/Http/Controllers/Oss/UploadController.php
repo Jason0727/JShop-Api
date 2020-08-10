@@ -15,6 +15,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use oss\UploadFile;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UploadController extends Controller
 {
@@ -30,22 +31,16 @@ class UploadController extends Controller
      */
     public function __invoke(Request $request)
     {
-        try {
-            # 文件校验
-            $file = $request->file('file');
-            if (empty($file) || !$file->isValid()) throw new Exception('文件无效');
-            # 保存目录
-            $dir = $request->post('dir', 'images');
-            # 上传
-            $ossPutFile = new UploadFile($file, $dir);
-            $result = $ossPutFile->exec();
-            if ($result === false) throw new Exception('文件上传失败');
+        # 文件校验
+        $file = $request->file('file');
+        if (empty($file) || !$file->isValid()) throw new BadRequestHttpException('文件无效');
+        # 保存目录
+        $dir = $request->post('dir', 'images');
+        # 上传
+        $ossPutFile = new UploadFile($file, $dir);
+        $result = $ossPutFile->exec();
+        if ($result === false) throw new BadRequestHttpException('文件上传失败');
 
-            return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, ['url' => $result]);
-        } catch (Exception $exception) {
-            Log::error("oss上传文件失败,原因:" . $exception->getMessage());
-
-            return apiResponse(ApiConstant::FAILED, ApiConstant::FAILED_MSG);
-        }
+        return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, ['url' => $result]);
     }
 }

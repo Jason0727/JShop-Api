@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        // ↓↓↓↓↓↓↓↓↓重构Symfony异常↓↓↓↓↓↓↓
+        // ↓↓↓↓↓ 重构Symfony异常 ↓↓↓↓↓
         if ($exception instanceof BadRequestHttpException) {
             return response()->json([
                 "code" => 400,
@@ -63,10 +63,17 @@ class Handler extends ExceptionHandler
             ]);
         }
 
+        if ($exception instanceof UnauthorizedHttpException) {
+            return response()->json([
+                "code" => 401,
+                "msg" => $exception->getMessage() ?: "认证失败，请稍后再试~"
+            ]);
+        }
+
         if ($exception instanceof AccessDeniedHttpException) {
             return response()->json([
                 "code" => 403,
-                "msg" => "请先登录哦~"
+                "msg" => "拒绝访问，请稍后再试~"
             ]);
         }
 
@@ -84,13 +91,20 @@ class Handler extends ExceptionHandler
             ]);
         }
 
+        if ($exception instanceof PlatformNotAcceptableHttpException) {
+            return response()->json([
+                "code" => 406,
+                "msg" => "平台跑丢了~"
+            ]);
+        }
+
         if ($exception instanceof TooManyRequestsHttpException) {
             return response()->json([
                 "code" => 429,
                 "msg" => "您稍微歇会~"
             ]);
         }
-        // ↑↑↑↑↑↑↑↑↑↑↑重构Symfony异常↑↑↑↑↑↑↑↑
+        // ↑↑↑↑↑ 重构Symfony异常 ↑↑↑↑↑
 
         return parent::render($request, $exception);
     }

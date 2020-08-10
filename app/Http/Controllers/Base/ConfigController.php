@@ -34,6 +34,6 @@ class ConfigController
             'store' => $storeConfig
         ];
 
-        return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);
+        return api_response(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);
     }
 }

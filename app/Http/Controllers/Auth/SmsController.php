@@ -38,6 +38,6 @@ class SmsController extends Controller
         $result = SmsService::sendCode($postData['phone']);
         if ($result === false) throw new BadRequestHttpException('验证码发送失败');
 
-        return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG);
+        return api_response(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG);
     }
 }

@@ -41,6 +41,6 @@ class UploadController extends Controller
         $result = $ossPutFile->exec();
         if ($result === false) throw new BadRequestHttpException('文件上传失败');
 
-        return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, ['url' => $result]);
+        return api_response(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, ['url' => $result]);
     }
 }

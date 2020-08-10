@@ -7,14 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\FissionRedPackageService;
 use App\Models\FissionRedPackageRecord;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ShowController extends Controller
 {
     public function __invoke(Request $request)
     {
-        Log::info('xxxx');
         # 活动配置
         $fissionRedPackageConfig = FissionRedPackageService::getFissionRedPackageConfig();
         if ($fissionRedPackageConfig === false) throw new BadRequestHttpException("活动已结束，敬请期待~");
@@ -36,6 +34,6 @@ class ShowController extends Controller
         ];
 
         # 返回
-        return apiResponse(ApiConstant::SUCCESS, '操作成功', $data);
+        return api_response(ApiConstant::SUCCESS, '操作成功', $data);
     }
 }

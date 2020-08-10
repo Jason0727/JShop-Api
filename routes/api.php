@@ -65,9 +65,11 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     Route::get('index', 'IndexController');
 });
 # 红包
-Route::group(['prefix' => 'fission-red-package', 'namespace' => 'FissionRedPackage','middleware' => 'auth.jwt'], function () {
-    # 首页
+Route::group(['prefix' => 'fission-red-package', 'namespace' => 'FissionRedPackage', 'middleware' => 'auth.jwt'], function () {
+    # 拆红包页面
     Route::get('show', 'ShowController');
+    # 打开红包
+    Route::post('open', 'OpenController');
 });
 # 分类
 Route::group(['prefix' => 'category', 'namespace' => 'Category'], function () {

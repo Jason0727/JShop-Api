@@ -24,8 +24,8 @@ class CreateFissionRedPackageRecordsTable extends Migration
             $table->decimal('total_money', 10, 2)->default('0.00')->comment('红包总金额');
             $table->decimal('money', 10, 2)->default('0.00')->comment('分到红包金额');
             $table->decimal('use_minimum', 10, 2)->default('0.00')->comment('红包使用最低消费金额');
-            $table->integer('expire')->default(30)->comment('红包有效期，单位:天');
-            $table->dateTime('expire_time')->comment('到期时间');
+            $table->integer('expire_days')->default(30)->comment('红包有效期，单位:天');
+            $table->dateTime('single_expire_time')->comment('每个红包到期时间');
             $table->tinyInteger('distribute_type')->unsigned()->default(0)->comment('红包分配类型 0 随机 1 平分');
             $table->tinyInteger('is_expire')->unsigned()->default(0)->comment('是否已过期 0 未过期 1 已过期');
             $table->tinyInteger('is_finish')->unsigned()->default(0)->comment('是否已完成 0 未完成 1 已完成');

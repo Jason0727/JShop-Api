@@ -7,6 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 class FissionRedPackageRecord extends Model
 {
     /**
+     * 批量插入可写字段
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'config_id',
+        'user_id',
+        'parent_id',
+        'user_num',
+        'total_money',
+        'money',
+        'use_minimum',
+        'expire_days',
+        'single_expire_time',
+        'distribute_type',
+        'is_expire',
+        'is_finish',
+    ];
+    /**
      * 是否过期
      */
     const IS_EXPIRE_NO = 0; # 未过期

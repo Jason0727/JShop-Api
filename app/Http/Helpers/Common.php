@@ -4,17 +4,17 @@
  * 函数库
  */
 
-if (!function_exists('apiResponse')) {
+if (!function_exists('api_response')) {
 
     /**
      * Api接口响应
      *
-     * @param string $code
+     * @param int $code
      * @param string $msg
      * @param array $data
      * @return false|string
      */
-    function apiResponse(string $code, string $msg = "操作成功", array $data = [])
+    function api_response(int $code, string $msg = "操作成功", array $data = [])
     {
         return response()->json(['code' => $code, 'msg' => $msg, 'data' => $data]);
     }

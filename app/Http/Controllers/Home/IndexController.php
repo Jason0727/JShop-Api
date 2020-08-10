@@ -29,6 +29,6 @@ class IndexController extends Controller
             'fission_red_package_activity' => $fissionRedPackageActivity,
         ];
 
-        return apiResponse(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);
+        return api_response(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, $data);
     }
 }

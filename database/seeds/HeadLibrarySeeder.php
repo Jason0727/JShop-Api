@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\HeadLibrary;
 use Carbon\Carbon;
 
-class HeadLibrariesSeeder extends Seeder
+class HeadLibrarySeeder extends Seeder
 {
     /**
      * 吉祥物类型头像Url

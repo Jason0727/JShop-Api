@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\TopicFavorite;
-use Carbon\Carbon;
+use App\Models\GoodPlatform;
 
-class TopicFavoritesSeeder extends Seeder
+class GoodPlatformSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +21,7 @@ class TopicFavoritesSeeder extends Seeder
     {
         $this->formatData();
 
-        TopicFavorite::query()->insert($this->data);
+        GoodPlatform::query()->insert($this->data);
     }
 
     /**
@@ -31,11 +30,8 @@ class TopicFavoritesSeeder extends Seeder
     private function formatData()
     {
         $this->data[] = [
-            'id' => 1,
-            'topic_id' => 1,
-            'user_id' => 1,
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString()
+            'good_id' => 1,
+            'platform_id' => 1
         ];
     }
 }

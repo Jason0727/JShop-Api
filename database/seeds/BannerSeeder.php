@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Banner;
 use Carbon\Carbon;
 
-class BannersSeeder extends Seeder
+class BannerSeeder extends Seeder
 {
     /**
      * 待批量插入数据

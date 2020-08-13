@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use user\RandomUserInfo;
 use App\Models\User;
 
-class UsersSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * 待批量插入数据

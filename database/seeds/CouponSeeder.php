@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DiyTemplatesSeeder extends Seeder
+class CouponSeeder extends Seeder
 {
     /**
      * Run the database seeds.

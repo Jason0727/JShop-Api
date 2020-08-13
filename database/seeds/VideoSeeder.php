@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\TopicType;
+use App\Models\Video;
 use Carbon\Carbon;
 
-class TopicTypesSeeder extends Seeder
+class VideoSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +22,7 @@ class TopicTypesSeeder extends Seeder
     {
         $this->formatData();
 
-        TopicType::query()->insert($this->data);
+        Video::query()->insert($this->data);
     }
 
     /**
@@ -32,9 +32,13 @@ class TopicTypesSeeder extends Seeder
     {
         $this->data[] = [
             'id' => 1,
-            'name' => '头条快报',
-            'status' => TopicType::STATUS_YES,
+            'title' => '首页推荐视频',
+            'platform_id' => 1,
+            'video_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/videos/2020-07-19/130efded630be21a2eabef215a4304cf.mp4',
+            'status' => Video::STATUS_YES,
             'sort' => 0,
+            'cover_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-19/d0ca86356ac796c30a2187c0a4a97a39.jpg',
+            'content' => '首页推荐视频详情',
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()
         ];

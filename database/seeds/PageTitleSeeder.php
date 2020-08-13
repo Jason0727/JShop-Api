@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\PageTitle;
 
-class PageTitlesSeeder extends Seeder
+class PageTitleSeeder extends Seeder
 {
     /**
      * 待批量插入数据

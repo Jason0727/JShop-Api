@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Good;
+use App\Models\TopicType;
 use Carbon\Carbon;
 
-class GoodsSeeder extends Seeder
+class TopicTypeSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +22,7 @@ class GoodsSeeder extends Seeder
     {
         $this->formatData();
 
-        Good::query()->insert($this->data);
+        TopicType::query()->insert($this->data);
     }
 
     /**
@@ -31,9 +31,12 @@ class GoodsSeeder extends Seeder
     private function formatData()
     {
         $this->data[] = [
-//            'id' => 1,
-//            'created_at' => Carbon::now()->toDateTimeString(),
-//            'updated_at' => Carbon::now()->toDateTimeString()
+            'id' => 1,
+            'name' => '头条快报',
+            'status' => TopicType::STATUS_YES,
+            'sort' => 0,
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
         ];
     }
 }

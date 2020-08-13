@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use App\Models\FissionRedPackageConfig;
 
-class FissionRedPackageConfigsSeeder extends Seeder
+class FissionRedPackageConfigSeeder extends Seeder
 {
     /**
      * 待批量插入数据

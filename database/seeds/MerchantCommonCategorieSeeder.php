@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\MerchantCommonCategory;
 use Carbon\Carbon;
 
-class MerchantCommonCategoriesSeeder extends Seeder
+class MerchantCommonCategorieSeeder extends Seeder
 {
     /**
      * 待批量插入数据

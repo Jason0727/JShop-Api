@@ -20,10 +20,11 @@ class CreateGoodSkusTable extends Migration
             $table->string('name')->comment('名称');
             $table->integer('good_id')->comment('外键，商品表ID');
             $table->integer('stock')->default(0)->comment('库存');
+            $table->integer('sales')->default(0)->comment('销量');
             $table->decimal('price', 10, 2)->default(0.00)->comment('售价');
             $table->decimal('cost_price', 10, 2)->default(0.00)->comment('成本价');
             $table->string('pic_url')->comment('规格图url');
-            $table->json('attr')->comment('规格属性，格式:[{"attr_id":1,"attr_name":"红色"},{"attr_id":2,"attr_name":"XL"}]');
+            $table->json('attr')->comment('规格，格式:[{"attr_value_id":1,"attr_name":"红色"},{"attr_value_id":2,"attr_name":"XL"}]');
             $table->timestamps();
             # 索引
             $table->index(['good_id']);

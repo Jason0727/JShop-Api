@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Option;
 use App\Constant\OptionConstant;
 
-class OptionsSeeder extends Seeder
+class OptionSeeder extends Seeder
 {
     /**
      * 待批量插入数据

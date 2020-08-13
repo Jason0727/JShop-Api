@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\HomeBlock;
 use Carbon\Carbon;
 
-class HomeBlocksSeeder extends Seeder
+class HomeBlockSeeder extends Seeder
 {
     /**
      * 待批量插入数据

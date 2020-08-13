@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GoodSkusSeeder extends Seeder
+class couponAutoSendSeeder extends Seeder
 {
     /**
      * Run the database seeds.

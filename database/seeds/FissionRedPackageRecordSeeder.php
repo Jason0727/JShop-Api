@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GoodAttrValuesSeeder extends Seeder
+class FissionRedPackageRecordSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Models\Video;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+use App\Models\OauthUser;
 
-class VideosSeeder extends Seeder
+class OauthUserSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +22,7 @@ class VideosSeeder extends Seeder
     {
         $this->formatData();
 
-        Video::query()->insert($this->data);
+        OauthUser::query()->insert($this->data);
     }
 
     /**
@@ -30,15 +30,13 @@ class VideosSeeder extends Seeder
      */
     private function formatData()
     {
+        # 自己
         $this->data[] = [
             'id' => 1,
-            'title' => '首页推荐视频',
+            'user_id' => 1,
+            'open_id' => 'oreZ65eXUu6ENFm-IQQtvUvaPIgI',
             'platform_id' => 1,
-            'video_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/videos/2020-07-19/130efded630be21a2eabef215a4304cf.mp4',
-            'status' => Video::STATUS_YES,
-            'sort' => 0,
-            'cover_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-19/d0ca86356ac796c30a2187c0a4a97a39.jpg',
-            'content' => '首页推荐视频详情',
+            'union_id' => 'oynfm1RDKr9xf6hh0nEfL01iI-ms',
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()
         ];

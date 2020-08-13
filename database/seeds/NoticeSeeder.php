@@ -2,9 +2,9 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use App\Models\Platform;
+use App\Models\Notice;
 
-class PlatformsSeeder extends Seeder
+class NoticeSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +22,7 @@ class PlatformsSeeder extends Seeder
     {
         $this->formatData();
 
-        Platform::query()->insert($this->data);
+        Notice::query()->insert($this->data);
     }
 
     /**
@@ -30,18 +30,18 @@ class PlatformsSeeder extends Seeder
      */
     private function formatData()
     {
-        # 微信小程序
         $this->data[] = [
             'id' => 1,
-            'name' => '微信小程序',
-            'icon' => 'https://fmy90.oss-cn-beijing.aliyuncs.com/fmy/public/6b4f092f0f2785a8e9346b38ca62e4ad.jpg',
-            'app_id' => 'wx501990400906c9ff',
-            'app_secret' => 'fb66d48717531404e1bcc9a67a89ddfa',
-            'oauth' => 'weixinsmall',
-            'status' => 1,
+            'name' => '公告',
+            'platform_id' => 1,
+            'type' => Notice::TYPE_HOME,
+            'status' => Notice::STATUS_YES,
+            'icon_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-07-18/a0866bc4d8cb0034053e1429a92a1ba5.png',
+            'bg_color' => '#f67f79',
+            'color' => '#ffffff',
+            'content' => '感冒低发期，天气舒适，请注意多吃蔬菜水果，多喝水哦',
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()
         ];
-        # 支付宝小程序
     }
 }

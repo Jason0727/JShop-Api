@@ -12,44 +12,54 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         # 地区
-        $this->call(DistrictsSeeder::class);
+        $this->call(DistrictSeeder::class);
         # 头像库
-        $this->call(HeadLibrariesSeeder::class);
+        $this->call(HeadLibrarySeeder::class);
         # 平台
-        $this->call(PlatformsSeeder::class);
+        $this->call(PlatformSeeder::class);
         # 用户
-        $this->call(UsersSeeder::class);
+        $this->call(UserSeeder::class);
         # 平台用户
-        $this->call(OauthUsersSeeder::class);
+        $this->call(OauthUserSeeder::class);
         # 小程序标题
-        $this->call(PageTitlesSeeder::class);
+        $this->call(PageTitleSeeder::class);
         # 数据字典
-        $this->call(OptionsSeeder::class);
+        $this->call(OptionSeeder::class);
         # Diy模板
-        $this->call(DiyTemplatesSeeder::class);
+        $this->call(DiyTemplateSeeder::class);
         # 导航轮播/广告位
-        $this->call(BannersSeeder::class);
+        $this->call(BannerSeeder::class);
         # 首页导航
-        $this->call(HomeNavsSeeder::class);
+        $this->call(HomeNavSeeder::class);
         # 通知
-        $this->call(NoticesSeeder::class);
+        $this->call(NoticeSeeder::class);
         # 专题类型
-        $this->call(TopicTypesSeeder::class);
+        $this->call(TopicTypeSeeder::class);
         # 专题
-        $this->call(TopicsSeeder::class);
+        $this->call(TopicSeeder::class);
         # 用户专题收藏
-        $this->call(TopicFavoritesSeeder::class);
+        $this->call(TopicFavoriteSeeder::class);
         # 视频
-        $this->call(VideosSeeder::class);
+        $this->call(VideoSeeder::class);
         # 商户所售类目
-        $this->call(MerchantCommonCategoriesSeeder::class);
+        $this->call(MerchantCommonCategorieSeeder::class);
         # 商户
-        $this->call(MerchantsSeeder::class);
+        $this->call(MerchantSeeder::class);
         # 图片魔方
-        $this->call(HomeBlocksSeeder::class);
+        $this->call(HomeBlockSeeder::class);
         # 商品分类
-        $this->call(CategoriesSeeder::class);
+        $this->call(CategorySeeder::class);
         # 裂变红包配置
-        $this->call(FissionRedPackageConfigsSeeder::class);
+        $this->call(FissionRedPackageConfigSeeder::class);
+        # 商品属性名
+        $this->call(GoodAttrNameSeeder::class);
+        # 商品属性值
+        $this->call(GoodAttrValueSeeder::class);
+        # 商品SKU
+        $this->call(GoodSkuSeeder::class);
+        # 商品
+        $this->call(GoodSeeder::class);
+        # 商品-平台
+        $this->call(GoodPlatformSeeder::class);
     }
 }

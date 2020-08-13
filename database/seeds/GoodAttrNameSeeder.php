@@ -1,10 +1,10 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use App\Models\OauthUser;
+use App\Models\GoodAttrName;
+use Carbon\Carbon;
 
-class OauthUsersSeeder extends Seeder
+class GoodAttrNameSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +22,7 @@ class OauthUsersSeeder extends Seeder
     {
         $this->formatData();
 
-        OauthUser::query()->insert($this->data);
+        GoodAttrName::query()->insert($this->data);
     }
 
     /**
@@ -30,13 +30,17 @@ class OauthUsersSeeder extends Seeder
      */
     private function formatData()
     {
-        # 自己
         $this->data[] = [
             'id' => 1,
-            'user_id' => 1,
-            'open_id' => 'oreZ65eXUu6ENFm-IQQtvUvaPIgI',
-            'platform_id' => 1,
-            'union_id' => 'oynfm1RDKr9xf6hh0nEfL01iI-ms',
+            'good_id' => 1,
+            'name' => '颜色',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
+        ];
+        $this->data[] = [
+            'id' => 2,
+            'good_id' => 1,
+            'name' => '内存',
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()
         ];

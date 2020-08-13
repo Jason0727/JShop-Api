@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Models\GoodAttrName;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+use App\Models\Platform;
 
-class GoodAttrNamesSeeder extends Seeder
+class PlatformSeeder extends Seeder
 {
     /**
      * 待批量插入数据
@@ -22,7 +22,7 @@ class GoodAttrNamesSeeder extends Seeder
     {
         $this->formatData();
 
-        GoodAttrName::query()->insert($this->data);
+        Platform::query()->insert($this->data);
     }
 
     /**
@@ -30,19 +30,18 @@ class GoodAttrNamesSeeder extends Seeder
      */
     private function formatData()
     {
+        # 微信小程序
         $this->data[] = [
             'id' => 1,
-            'good_id' => 1,
-            'name' => '颜色',
+            'name' => '微信小程序',
+            'icon' => 'https://fmy90.oss-cn-beijing.aliyuncs.com/fmy/public/6b4f092f0f2785a8e9346b38ca62e4ad.jpg',
+            'app_id' => 'wx501990400906c9ff',
+            'app_secret' => 'fb66d48717531404e1bcc9a67a89ddfa',
+            'oauth' => 'weixinsmall',
+            'status' => 1,
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()
         ];
-        $this->data[] = [
-            'id' => 2,
-            'good_id' => 1,
-            'name' => '尺码',
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString()
-        ];
+        # 支付宝小程序
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\HomeNav;
 
-class HomeNavsSeeder extends Seeder
+class HomeNavSeeder extends Seeder
 {
     /**
      * 待批量插入数据

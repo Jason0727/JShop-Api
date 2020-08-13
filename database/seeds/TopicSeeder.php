@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Topic;
 use Carbon\Carbon;
 
-class TopicsSeeder extends Seeder
+class TopicSeeder extends Seeder
 {
     /**
      * 待批量插入数据

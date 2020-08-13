@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
  * ========================================================================
  */
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+    # 微信静默登录
+    Route::post('wx-login-with-silence', 'WxLoginWithSilenceController');
     # 微信登录
     Route::post('wx', 'WxController@login');
     # 短信登录(暂未使用)

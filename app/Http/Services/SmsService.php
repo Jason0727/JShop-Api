@@ -47,7 +47,7 @@ class SmsService
             if (empty($gateway) || !isset($response[$gateway]['result']['Code'])) throw new Exception('返回数据异常');
             if (strtoupper($response[$gateway]['result']['Code']) != 'OK') throw new Exception('短信反馈发送失败');
             # 记录redis
-            Redis::select(RedisConstant::SELECT15);
+            Redis::select(RedisConstant::SELECT_15);
             Redis::set(RedisConstant::SMS_CODE . ":" . $phone, $code);
             Redis::expire(RedisConstant::SMS_CODE . ":" . $phone, env('SMS_CODE_EXPIRE'));
             # 发送次数自增1
@@ -82,7 +82,7 @@ class SmsService
     public static function checkCode(string $phone, string $code)
     {
         try {
-            Redis::select(RedisConstant::SELECT15);
+            Redis::select(RedisConstant::SELECT_15);
             $getCode = Redis::get(RedisConstant::SMS_CODE . ":" . $phone);
             if (empty($getCode)) throw new Exception('验证码无效');
             if ($code != $getCode) throw new Exception('验证码不正确');
@@ -105,7 +105,7 @@ class SmsService
             # 手机号码白名单校验
             if (in_array($phone, self::WHITE_PHONE)) return true;
             # 手机发送次数校验
-            Redis::select(RedisConstant::SELECT15);
+            Redis::select(RedisConstant::SELECT_15);
             $sendNum = Redis::get(RedisConstant::MAX_SMS_NUM . ":" . $phone);
             $sendNum = $sendNum ?: 0;
             if ($sendNum >= env('MAX_SMS_NUM')) throw new Exception('获取验证码已达当天上限');

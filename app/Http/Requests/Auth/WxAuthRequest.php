@@ -17,9 +17,9 @@ class WxAuthRequest extends FormRequest
     public function rules()
     {
         return [
-//            'code' => ['required'],
-//            'encrypted_data' => ['required'],
-//            'iv' => ['required'],
+            'code' => ['required'],
+            'encrypted_data' => ['required'],
+            'iv' => ['required'],
         ];
     }
 

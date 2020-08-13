@@ -68,7 +68,7 @@ class WxController extends Controller
         $token = JWTAuth::claims($customClaims)->fromUser($oauthUser);
         # 返回数据
         $data = [
-            'token' => $token,
+            'access_token' => $token,
             'expire_in' => env('JWT_TTL')
         ];
 

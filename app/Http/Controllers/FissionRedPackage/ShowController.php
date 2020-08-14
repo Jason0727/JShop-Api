@@ -26,7 +26,7 @@ class ShowController extends Controller
         # 参与记录
         $fissionRedPackageRecord = FissionRedPackageRecord::query()->where([
             ['config_id', '=', $fissionRedPackageConfig->id],
-            ['user_id', '=', $this->userId],
+            ['user_id', '=', $this->userId()],
             ['parent_id', '=', 0],
             ['is_expire', '=', FissionRedPackageRecord::IS_EXPIRE_NO],
             ['is_finish', '=', FissionRedPackageRecord::IS_FINISH_NO],

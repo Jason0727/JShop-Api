@@ -1,13 +1,23 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Common;
 
 use Illuminate\Foundation\Http\FormRequest;
 use traits\SingleValidateErrorTrait;
 
-class WxAuthRequest extends FormRequest
+class SendSmsCodeRequest extends FormRequest
 {
     use SingleValidateErrorTrait;
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -17,9 +27,10 @@ class WxAuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => ['required'],
-            'encrypted_data' => ['required'],
-            'iv' => ['required'],
+            'phone' => [
+                'required',
+                'mobile'
+            ],
         ];
     }
 
@@ -31,9 +42,7 @@ class WxAuthRequest extends FormRequest
     public function attributes()
     {
         return [
-            'code' => '授权码',
-            'encrypted_data' => '加密用户数据',
-            'iv' => '初始向量',
+            'phone' => '手机号码',
         ];
     }
 }

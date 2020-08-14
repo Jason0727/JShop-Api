@@ -61,5 +61,9 @@ class DatabaseSeeder extends Seeder
         $this->call(GoodSeeder::class);
         # 商品-平台
         $this->call(GoodPlatformSeeder::class);
+        # 手机白名单
+        $this->call(SmsPhoneWhiteListSeeder::class);
+        #  手机黑名单
+        $this->call(SmsPhoneBlackListSeeder::class);
     }
 }

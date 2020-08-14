@@ -9,49 +9,47 @@
 namespace traits;
 
 
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Auth;
 
 trait OauthUserTrait
 {
     /**
      * 平台用户
      *
-     * @var bool
+     * @return bool|\Illuminate\Contracts\Auth\Authenticatable|null
      */
-    protected $oauthUser;
+    public function oauthUser()
+    {
+        return Auth::check() === false || !Auth::user() ? false : Auth::user();
+    }
 
     /**
      * 平台用户ID
      *
-     * @var
+     * @return int
      */
-    protected $oauthUserId;
+    public function oauthUserId()
+    {
+        return Auth::id() ?: 0;
+    }
 
     /**
      * 用户ID
      *
-     * @var
+     * @return int
      */
-    protected $userId;
-
-    /**
-     * openId
-     *
-     * @var
-     */
-    protected $openId;
-
-    /**
-     * OauthUserTrait constructor.
-     */
-    public function __construct()
+    public function userId()
     {
-        $this->oauthUser = JWTAuth::getToken() && JWTAuth::check() ? JWTAuth::authenticate() : false;
+        return $this->oauthUser() === false ? 0 : $this->oauthUser()->user_id;
+    }
 
-        $this->oauthUserId = $this->oauthUser === false ? 0 : $this->oauthUser->id;
-
-        $this->userId = $this->oauthUser === false ? 0 : $this->oauthUser->user_id;
-
-        $this->openId = $this->oauthUser === false ? 0 : $this->oauthUser->open_id;
+    /**
+     * 平台用户openid
+     *
+     * @return int
+     */
+    public function openId()
+    {
+        return $this->oauthUser() === false ? 0 : $this->oauthUser()->open_id;
     }
 }

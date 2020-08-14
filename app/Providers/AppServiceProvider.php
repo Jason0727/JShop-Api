@@ -5,6 +5,7 @@ namespace App\Providers;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\ServiceProvider;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Strategies\OrderStrategy;

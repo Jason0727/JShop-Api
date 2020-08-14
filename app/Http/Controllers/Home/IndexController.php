@@ -20,7 +20,7 @@ class IndexController extends Controller
         # 商城配置
         $store = StoreService::getStoreConfig();
         # 裂变红包活动
-        $fissionRedPackageActivity = FissionRedPackageService::getFissionActivity($this->userId);
+        $fissionRedPackageActivity = FissionRedPackageService::getFissionActivity($this->userId());
 
         # 返回
         $data = [

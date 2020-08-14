@@ -11,6 +11,12 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ShowController extends Controller
 {
+    /**
+     * 拆红包页面
+     *
+     * @param Request $request
+     * @return false|string
+     */
     public function __invoke(Request $request)
     {
         # 活动配置

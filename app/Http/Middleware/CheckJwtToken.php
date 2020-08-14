@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Exceptions\UnauthorizedHttpException;
 use Closure;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Auth;
 
 class CheckJwtToken
 {
@@ -16,7 +16,7 @@ class CheckJwtToken
      */
     public function handle($request, Closure $next)
     {
-        if (!JWTAuth::getToken() || JWTAuth::check() === false) throw new UnauthorizedHttpException();
+        if (Auth::check() === false || !Auth::user()) throw new UnauthorizedHttpException();
 
         # 通过
         return $next($request);

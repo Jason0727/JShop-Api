@@ -22,16 +22,18 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     # 微信静默登录
     Route::post('wx-login-with-silence', 'WxLoginWithSilenceController');
-    # 微信登录
-    Route::post('wx', 'WxController@login');
-    # 短信登录(暂未使用)
-    Route::post('sms', 'SmsController@login');
-    # 密码登录(暂未使用)
-    Route::post('password', 'PasswordController@login');
-    # 支付宝登录(暂未使用)
-    Route::post('alipay', 'AlipayController@login');
-    # 发送短信验证码
-    Route::post('send/code', 'SmsController@sendCode');
+    # 微信手机号授权登录
+    Route::post('wx-login-by-phone', 'WxLoginByPhoneController');
+});
+
+/**
+ * ========================================================================
+ * 通用 路由列表
+ * ========================================================================
+ */
+Route::group(['prefix' => 'common', 'namespace' => 'Common'], function () {
+    # 发送手机短信验证码
+    Route::post('send-code', 'SendSmsCodeController');
 });
 
 /**

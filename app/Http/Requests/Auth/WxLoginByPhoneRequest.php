@@ -5,9 +5,19 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use traits\SingleValidateErrorTrait;
 
-class SmsAuthRequest extends FormRequest
+class WxLoginByPhoneRequest extends FormRequest
 {
     use SingleValidateErrorTrait;
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -17,10 +27,9 @@ class SmsAuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => [
-                'required',
-                'mobile'
-            ],
+//            'code' => ['required'],
+//            'encrypted_data' => ['required'],
+//            'iv' => ['required'],
         ];
     }
 
@@ -32,7 +41,9 @@ class SmsAuthRequest extends FormRequest
     public function attributes()
     {
         return [
-            'phone' => '手机号码',
+            'code' => '授权码',
+            'encrypted_data' => '加密用户数据',
+            'iv' => '初始向量',
         ];
     }
 }

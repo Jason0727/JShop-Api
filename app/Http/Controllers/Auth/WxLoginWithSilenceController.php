@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Constant\ApiConstant;
-use App\Constant\RedisConstant;
 use App\Exceptions\UnauthorizedHttpException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\WxLoginWithSilenceRequest;
 use App\Models\OauthUser;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use redis\LoginAccessToken;
 use wx\Wx;
 
 class WxLoginWithSilenceController extends Controller
@@ -39,10 +38,9 @@ class WxLoginWithSilenceController extends Controller
             ])->first();
             if (!$oauthUser) throw new UnauthorizedHttpException("您需要授权手机号哦~");
 
-            # 查询ACCESS_TOKEN缓存
-            # todo:暂时使用本地缓存，后面修改成redis缓存，操作库0号库
-            $cacheKey = RedisConstant::ACCESS_TOKEN . ":" . $platform->id . ":" . $oauthUser->id;
-            if (!Cache::has($cacheKey)) throw new UnauthorizedHttpException("token已过期，请重新授权~");
+            # 查询AccessToken缓存
+            $loginAccessToken = new LoginAccessToken($oauthUser->id);
+            if (!$loginAccessToken->get()) throw new UnauthorizedHttpException("token已过期，请重新授权~");
 
             # 设置unionId
             !$oauthUser->union_id && isset($baseInfo['unionid']) && $baseInfo['unionid'] && $oauthUser->setUnionId($baseInfo['unionid']);
@@ -55,9 +53,9 @@ class WxLoginWithSilenceController extends Controller
 
             # 设置返回信息
             $data = [
-                'access_token' => Cache::get($cacheKey),
+                'user' => $user,
                 'oauth_user' => $oauthUser,
-                'user' => $user
+                'access_token' => $loginAccessToken->get()
             ];
 
             # 返回

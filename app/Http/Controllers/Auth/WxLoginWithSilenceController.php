@@ -36,11 +36,11 @@ class WxLoginWithSilenceController extends Controller
                 ['open_id', '=', $baseInfo['openid']],
                 ['platform_id', '=', $platform->id]
             ])->first();
-            if (!$oauthUser) throw new UnauthorizedHttpException("您需要授权手机号哦~");
+            if (!$oauthUser) return api_response(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG);
 
             # 查询AccessToken缓存
             $loginAccessToken = new LoginAccessToken($oauthUser->id);
-            if (!$loginAccessToken->get()) throw new UnauthorizedHttpException("token已过期，请重新授权~");
+            if (!$loginAccessToken->get()) return api_response(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG);
 
             # 设置unionId
             !$oauthUser->union_id && isset($baseInfo['unionid']) && $baseInfo['unionid'] && $oauthUser->setUnionId($baseInfo['unionid']);

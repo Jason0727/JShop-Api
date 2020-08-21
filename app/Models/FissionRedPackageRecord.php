@@ -20,7 +20,7 @@ class FissionRedPackageRecord extends Model
         'money',
         'use_minimum',
         'expire_days',
-        'single_expire_time',
+        'expire_time',
         'distribute_type',
         'is_expire',
         'is_finish',

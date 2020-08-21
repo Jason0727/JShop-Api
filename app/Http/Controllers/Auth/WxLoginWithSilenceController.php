@@ -45,16 +45,9 @@ class WxLoginWithSilenceController extends Controller
             # 设置unionId
             !$oauthUser->union_id && isset($baseInfo['unionid']) && $baseInfo['unionid'] && $oauthUser->setUnionId($baseInfo['unionid']);
 
-            # 用户信息
-            $user = $oauthUser->user;
-
-            # 解除绑定关系
-            $oauthUser->unsetRelation('user');
-
             # 设置返回信息
             $data = [
-                'user' => $user,
-                'oauth_user' => $oauthUser,
+                'user' => $oauthUser->user,
                 'access_token' => $loginAccessToken->get()
             ];
 

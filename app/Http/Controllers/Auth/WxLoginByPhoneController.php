@@ -71,16 +71,9 @@ class WxLoginByPhoneController extends Controller
             $loginAccessToken = new LoginAccessToken($oauthUser->id);
             $loginAccessToken->set($accessToken);
 
-            # 用户信息
-            $user = $oauthUser->user;
-
-            # 解除绑定关系
-            $oauthUser->unsetRelation('user');
-
             # 设置返回信息
             $data = [
-                'user' => $user,
-                'oauth_user' => $oauthUser,
+                'user' => $oauthUser->user,
                 'access_token' => $accessToken
             ];
 

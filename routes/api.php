@@ -72,8 +72,10 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
 Route::group(['prefix' => 'fission-red-package', 'namespace' => 'FissionRedPackage', 'middleware' => 'auth.jwt'], function () {
     # 拆红包页面
     Route::get('show', 'ShowController');
-    # 包红包
+    # 领取红包
     Route::post('open', 'OpenController');
+    # 红包详情
+    Route::get('detail', 'DetailController');
 });
 # 分类
 Route::group(['prefix' => 'category', 'namespace' => 'Category'], function () {

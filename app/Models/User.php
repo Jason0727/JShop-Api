@@ -9,6 +9,8 @@ class User extends Model
 {
     use SerializeDateTrait;
 
+    protected $hidden = ['password'];
+
     /**
      * 性别
      */

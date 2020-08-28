@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFissionRedPackageRecordsTable extends Migration
+class CreateFindRedPackageRecordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateFissionRedPackageRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fission_red_package_records', function (Blueprint $table) {
+        Schema::create('find_red_package_records', function (Blueprint $table) {
             # 字段
             $table->id();
             $table->integer('config_id')->comment('外键，裂变活动配置表ID');
@@ -38,7 +38,7 @@ class CreateFissionRedPackageRecordsTable extends Migration
             $table->index(['created_at']);
         });
         # 表注释
-        DB::statement('ALTER TABLE `fission_red_package_records` comment = "裂变红包用户参与记录表"');
+        DB::statement('ALTER TABLE `find_red_package_records` comment = "裂变红包用户参与记录表"');
     }
 
     /**
@@ -48,6 +48,6 @@ class CreateFissionRedPackageRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fission_red_package_records');
+        Schema::dropIfExists('find_red_package_records');
     }
 }

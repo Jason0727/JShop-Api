@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class FissionRedPackageRecordSeeder extends Seeder
+class FindRedPackageRecordSeeder extends Seeder
 {
     /**
      * Run the database seeds.

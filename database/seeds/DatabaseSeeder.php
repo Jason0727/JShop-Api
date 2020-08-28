@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         # 商品分类
         $this->call(CategorySeeder::class);
         # 裂变红包配置
-        $this->call(FissionRedPackageConfigSeeder::class);
+        $this->call(FindRedPackageConfigSeeder::class);
         # 商品属性名
         $this->call(GoodAttrNameSeeder::class);
         # 商品属性值

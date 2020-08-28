@@ -830,7 +830,7 @@ class OptionSeeder extends Seeder
         ];
         $this->data[] = [
             'title' => '裂变红包活动',
-            'key' => OptionConstant::FISSION_RED_PACKAGE_ACTIVITY,
+            'key' => OptionConstant::FIND_RED_PACKAGE_ACTIVITY,
             'value' => json_encode([
                 'name' => '一起拆红包', # 名称
                 'pic_url' => 'https://dolphin-shop.oss-cn-shanghai.aliyuncs.com/images/2020-08-06/26c168f5734a69ba7c59ebf30b041d72.png', # 红包封面图

@@ -68,8 +68,8 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     # 首页
     Route::get('index', 'IndexController');
 });
-# 红包
-Route::group(['prefix' => 'fission-red-package', 'namespace' => 'FissionRedPackage', 'middleware' => 'auth.jwt'], function () {
+# 发现红包
+Route::group(['prefix' => 'find-red-package', 'namespace' => 'FindRedPackage', 'middleware' => 'auth.jwt'], function () {
     # 拆红包页面
     Route::get('show', 'ShowController');
     # 领取红包

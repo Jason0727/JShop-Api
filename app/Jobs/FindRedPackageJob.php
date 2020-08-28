@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\FissionRedPackageRecord;
+use App\Models\FindRedPackageRecord;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Exception;
 
-class FissionRedPackageJob implements ShouldQueue
+class FindRedPackageJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -28,22 +28,22 @@ class FissionRedPackageJob implements ShouldQueue
      *
      * @var int
      */
-    protected $retryAfter = 10;
+    public $retryAfter = 10;
 
     /**
-     * @var FissionRedPackageRecord
+     * @var FindRedPackageRecord
      */
-    protected $fissionRedPackageRecord;
+    protected $findRedPackageRecord;
 
     /**
-     * FissionRedPackageJob constructor.
-     * @param FissionRedPackageRecord $fissionRedPackageRecord
+     * FindRedPackageJob constructor.
+     * @param FindRedPackageRecord $findRedPackageRecord
      */
-    public function __construct(FissionRedPackageRecord $fissionRedPackageRecord)
+    public function __construct(FindRedPackageRecord $findRedPackageRecord)
     {
-        $this->fissionRedPackageRecord = $fissionRedPackageRecord;
+        $this->findRedPackageRecord = $findRedPackageRecord;
 
-        $this->delay(Carbon::parse($this->fissionRedPackageRecord->expire_time));
+        $this->delay(Carbon::parse($this->findRedPackageRecord->expire_time));
     }
 
     /**
@@ -59,7 +59,6 @@ class FissionRedPackageJob implements ShouldQueue
             throw new Exception('异常');
         } catch (Exception $exception) {
             Log::notice('Attempt:' . $this->attempts() . ',原因:' . $exception->getMessage());
-
             if ($this->attempts() < 3) {
                 $this->release(); # 立即执行
             } elseif ($this->attempts() < $this->tries) {

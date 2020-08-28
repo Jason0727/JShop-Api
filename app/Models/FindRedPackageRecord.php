@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FissionRedPackageRecord extends Model
+class FindRedPackageRecord extends Model
 {
     /**
      * 批量插入可写字段

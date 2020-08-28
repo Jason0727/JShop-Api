@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\FissionRedPackage;
+namespace App\Http\Controllers\FindRedPackage;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FissionRedPackage\DetailRequest;
-use App\Models\FissionRedPackageRecord;
+use App\Http\Requests\FindRedPackage\DetailRequest;
+use App\Models\FindRedPackageRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -17,15 +17,14 @@ class DetailController extends Controller
         $validatedData = $detailRequest->validated();
 
         # 校验红包
-        $fissionRedPackageRecord = FissionRedPackageRecord::query()->where([
+        $findRedPackageRecord = FindRedPackageRecord::query()->where([
             ['id', '=', $validatedData['red_id']],
             ['parent_id', '=', 0], # 主包
             ['user_id', '=', $this->userId()]
         ])->first();
-        if (!$fissionRedPackageRecord) throw new BadRequestHttpException('红包跑丢了~');
+        if (!$findRedPackageRecord) throw new BadRequestHttpException('红包跑丢了~');
 
 
-
-        dd($fissionRedPackageRecord);
+        dd($findRedPackageRecord);
     }
 }

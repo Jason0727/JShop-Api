@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FissionRedPackageConfig extends Model
+class FindRedPackageConfig extends Model
 {
     /**
      * 状态

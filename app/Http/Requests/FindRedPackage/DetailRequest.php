@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\FissionRedPackage;
+namespace App\Http\Requests\FindRedPackage;
 
 use Illuminate\Foundation\Http\FormRequest;
 use traits\SingleValidateErrorTrait;

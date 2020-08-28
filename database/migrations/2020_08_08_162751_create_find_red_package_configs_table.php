@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFissionRedPackageConfigsTable extends Migration
+class CreateFindRedPackageConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateFissionRedPackageConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fission_red_package_configs', function (Blueprint $table) {
+        Schema::create('find_red_package_configs', function (Blueprint $table) {
             # 字段
             $table->id();
             $table->tinyInteger('user_num')->unsigned()->comment('拆红包所需用户数,最少2人');
@@ -22,7 +22,7 @@ class CreateFissionRedPackageConfigsTable extends Migration
             $table->decimal('use_minimum', 10, 2)->comment('赠送的红包最低消费金额');
             $table->tinyInteger('expire_days')->default(30)->unsigned()->comment('红包有效期，单位:天');
             $table->tinyInteger('distribute_type')->unsigned()->default(0)->comment('红包分配类型 0 随机 1 平分');
-            $table->tinyInteger('single_expire_hours')->unsigned()->default(2)->comment('每个红包有效期，单位:小时');
+            $table->tinyInteger('expire_hours')->unsigned()->default(2)->comment('红包有效期，单位:小时');
             $table->tinyInteger('status')->unsigned()->default(0)->comment('是否开启活动 0 否 1 是');
             $table->text('rule')->comment('规则');
             $table->string('share_title', 100)->comment('分享标题');
@@ -32,7 +32,7 @@ class CreateFissionRedPackageConfigsTable extends Migration
             $table->index(['status', 'created_at']);
         });
         # 表注释
-        DB::statement('ALTER TABLE `fission_red_package_configs` comment = "裂变红包活动配置表"');
+        DB::statement('ALTER TABLE `find_red_package_configs` comment = "裂变红包活动配置表"');
     }
 
     /**
@@ -42,6 +42,6 @@ class CreateFissionRedPackageConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fission_red_package_configs');
+        Schema::dropIfExists('find_red_package_configs');
     }
 }

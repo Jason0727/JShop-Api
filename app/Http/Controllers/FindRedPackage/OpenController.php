@@ -42,7 +42,7 @@ class OpenController extends Controller
                     'parent_id' => 0,
                     'user_num' => $findRedPackageConfig->user_num,
                     'total_money' => $findRedPackageConfig->total_money,
-                    'money' => 0,
+                    'money' => 0.00,
                     'use_minimum' => $findRedPackageConfig->use_minimum,
                     'expire_days' => $findRedPackageConfig->expire_days,
                     'expire_time' => Carbon::now()->addHours($findRedPackageConfig->expire_hours)->toDateTimeString(),
@@ -52,7 +52,7 @@ class OpenController extends Controller
                 ]);
 
                 # 追加队列
-                FindRedPackageJob::dispatch($findRedPackageRecord);
+//                FindRedPackageJob::dispatch($findRedPackageRecord);
             }
 
             return api_response(ApiConstant::SUCCESS, ApiConstant::SUCCESS_MSG, ['red_id' => $findRedPackageRecord->id]);

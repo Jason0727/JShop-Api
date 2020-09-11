@@ -5,7 +5,6 @@ namespace App\Http\Controllers\FindRedPackage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FindRedPackage\DetailRequest;
 use App\Models\FindRedPackageRecord;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 

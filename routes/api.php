@@ -63,11 +63,13 @@ Route::group(['prefix' => 'base', 'namespace' => 'Base'], function () {
     # 顶部导航栏配置
     Route::get('top-nav-bar', 'TopNavBarController');
 });
+
 # 首页
 Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     # 首页
     Route::get('index', 'IndexController');
 });
+
 # 发现红包
 Route::group(['prefix' => 'find-red-package', 'namespace' => 'FindRedPackage', 'middleware' => 'auth.jwt'], function () {
     # 拆红包页面
@@ -76,7 +78,10 @@ Route::group(['prefix' => 'find-red-package', 'namespace' => 'FindRedPackage', '
     Route::post('open', 'OpenController');
     # 红包详情
     Route::get('detail', 'DetailController');
+    # 好友助力帮拆红包
+    Route::get('help', 'HelpController');
 });
+
 # 分类
 Route::group(['prefix' => 'category', 'namespace' => 'Category'], function () {
     # 列表

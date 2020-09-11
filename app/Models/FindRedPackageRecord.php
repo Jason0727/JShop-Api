@@ -49,4 +49,24 @@ class FindRedPackageRecord extends Model
 
         return $this;
     }
+
+    /**
+     * 关联用户模型
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    /**
+     * 关联配置模型
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function config()
+    {
+        return $this->belongsTo(FindRedPackageConfig::class, 'config_id', 'id');
+    }
 }
